@@ -6,10 +6,8 @@ import{
   Outlet
 } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
-import { Sidenav } from './components/Navigation/Sidenav';
 import { Footer } from './components/Footer/Footer';
 import { NotFound } from './pages/NotFound/NotFound';
-import User from './interfaces/User'
 import { Header } from './components/Header/Header';
 import { PersonalArea } from './pages/PersonalArea/PersonalArea';
 import './App.scss';
