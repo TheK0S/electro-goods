@@ -1,10 +1,15 @@
 import './Header.scss';
-import { Sidenav } from '../Navigation/Sidenav';
+import { Logo } from '../Logo/Logo';
 
 export const Header = () => {
     return (
         <header className='Header'>
-            <Sidenav />
+            <>тут будет панель с логотипом</>
+            <Logo />
+            {/* <SearchPanel/> */}
+            {/* <ContactsPanel/> */}
+            {/* <FavoriteIcon/> */}
+            {/* <ProductsCartPanel/> */}
         </header>
     );
 }
