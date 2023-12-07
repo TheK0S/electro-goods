@@ -2,8 +2,9 @@ import './Logo.scss';
 
 export const Logo = () => {
     return (
-        <section className='Logo'>
-            <h1>kjuj</h1>
-        </section>
+        <div className='logo'>
+            <img className='logo-img' src="logo.jpg" alt="logo" />
+            <div className='logo-text'>завжди контакт</div>
+        </div>
     );
 }
