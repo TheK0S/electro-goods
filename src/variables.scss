@@ -1,0 +1,66 @@
+/*colors*/
+$clr-main:#ff8d35;
+$clr-secondary: #2c4456;
+$clr-attention: red;
+$clr-mainText:$clr-secondary;
+
+//Gaps
+// $gap-xs: 4px;
+// $gap-sm: 4px;
+// $gap-md: 4px;
+// $gap-lg: 4px;
+// $gap-xl: 4px;
+
+//width-cart
+// $width-cart-xs: 150px;
+// $width-cart-sm: 150px;
+// $width-cart-md: 150px;
+// $width-cart-lg: 150px;
+// $width-cart-lx: 150px;
+
+:root{
+    $sidebar-width: 100px;
+}
+
+
+$width-xs: 200px;
+$width-sm: 540px;
+$width-md: 720px;
+$width-lg: 960px;
+$width-lx: 1140px;
+// $width-full: 100%;
+
+
+//mixins
+@mixin icon-heart {  // will be correct
+    content: '\e890';
+    font-family: fontello;
+    font-style: normal;
+    font-weight: 400;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    color: $mainColor;
+    cursor: pointer;
+};
+
+@mixin icon-round {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.grid-container {
+    $max-width: $width-lx;
+    $min-width: $width-xs;
+    $flap: minmax(20px, 1fr);
+    $content: minmax($min-width, $max-width);
+    display: grid;
+    grid-template-columns: $flap $content $flap;
+}
+
+@media (max-width: $width-md) {}
