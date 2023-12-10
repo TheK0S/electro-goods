@@ -1,3 +1,5 @@
+// @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,1000&display=swap');
+
 /*colors*/
 $clr-main:#2c4456;
 $clr-secondary: #ff8d35;
@@ -17,6 +19,8 @@ $clr-mainText:$clr-secondary;
 // $width-cart-md: 150px;
 // $width-cart-lg: 150px;
 // $width-cart-lx: 150px;
+
+$width-logo-lx: 260px;
 
 :root{
     $sidebar-width: 100px;
@@ -55,6 +59,7 @@ $width-lx: 1140px;
 }
 
 .grid-container {
+    padding-top: 20px;
     $max-width: $width-lx;
     $min-width: $width-xs;
     $flap: minmax(20px, 1fr);
