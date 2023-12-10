@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "babel-preset-react-app": "^10.0.1",
     "eslint-config-react-app": "^7.0.1",
     "sass": "^1.69.5"
   }
