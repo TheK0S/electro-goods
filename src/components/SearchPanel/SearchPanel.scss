@@ -75,13 +75,12 @@
     }
 }
 
-.icon-search{
-    
+.icon-search{ 
 }
 
 .icon-search:before {
-
-    content: '\e84e';
+    font-family: "fontello";
+    content: '\e801';
     font-size: 20px;
     color: $clr-secondary;
     cursor: pointer;
