@@ -16,14 +16,12 @@ const App = () => {
 
   const Root = () => {
     return (
-      <div className="grid-container">
-        <div></div>
+      <div className="container py-3 ">
         <div>
           <Header />
           <Outlet />
           <Footer />
         </div>
-        <div></div>
       </div>
       );
   };

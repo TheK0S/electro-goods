@@ -8,7 +8,7 @@ export const SearchPanel = () => {
   }
 
   return (
-    <div className="search-form-wrap">
+    <div className="search-form-wrap mt-5 md:mt-0">
       <div className="form-element-wrapper">
         <div className="loader-circle" id="header-search-loader">
           </div>  {/*show loader*/ }

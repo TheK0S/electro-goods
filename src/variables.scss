@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,1000&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,1000&display=swap');
 
-@import "./fonts/fonts.scss";
+// @import "./fonts/fonts.scss";
 
 *{
-    font-family: 'Nunito Sans';
+    // font-family: 'Nunito Sans';
 }
 
 
@@ -66,15 +66,15 @@ $width-lx: 1140px;
     border-radius: 50%;
 }
 
-.grid-container {
-    padding-top: 20px;
-    $max-width: $width-lx;
-    $min-width: $width-xs;
-    $flap: minmax(20px, 1fr);
-    $content: minmax($min-width, $max-width);
-    display: grid;
-    grid-template-columns: $flap $content $flap;
-}
+// .grid-container {
+//     padding-top: 20px;
+//     $max-width: $width-lx;
+//     $min-width: $width-xs;
+//     $flap: minmax(20px, 1fr);
+//     $content: minmax($min-width, $max-width);
+//     display: grid;
+//     grid-template-columns: $flap $content $flap;
+// }
 
-@media (max-width: $width-md) {}
+// @media (max-width: $width-md) {}
 
