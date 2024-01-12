@@ -1,5 +1,3 @@
-// import "./SearchPanel.scss";
-
 export const SearchPanel = () => {
 
   let setDataSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -8,7 +6,7 @@ export const SearchPanel = () => {
   }
 
   return (
-    <div className="searchForm-wrap block h-8 md:h-8 mt-5 md:mt-0">
+    <div className="searchForm-wrap block h-8 md:h-8 mt-5 md:mt-0 lg:min-w-[300px] xl:min-w-[500px]">
       <div className="searchForm-element-wrapper flex relative">
         <div className="searchForm-loader-circle block absolute top-1/2 
         translate-y-1/2 w-5 h-5 
@@ -25,9 +23,6 @@ export const SearchPanel = () => {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
             </svg>
-
-
-          {/* <i className="searchForm-icon"></i> */}
           </button>
       </div>
       <div className="search-results" id="header-search-result">

@@ -1,7 +1,8 @@
 import { Logo } from '../Logo/Logo';
 import { SearchPanel } from '../SearchPanel/SearchPanel';
 import { ContactsPanel } from '../ContactsPanel/ContactsPanel';
-// import './Header.scss';
+import { IconsPanel } from '../IconsPanel/IconsPanel';
+import { LanguagePanel } from '../LanguagePanel/LanguagePanel';
 
 
 export const Header = () => {
@@ -10,6 +11,8 @@ export const Header = () => {
             <Logo />
             <SearchPanel/>
             <ContactsPanel/>
+            <IconsPanel/>
+            <LanguagePanel/>
             {/* <FavoriteIcon/> */}
             {/* <ProductsCartPanel/> */}
         </header>
