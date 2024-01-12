@@ -6,7 +6,7 @@
 
 @layer base{
   body {
-    @apply text-main text-base ; 
+    @apply text-main text-sm ; 
     font-family: 'Nunito', sans-serif;
   }
 }

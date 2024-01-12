@@ -10,8 +10,10 @@ module.exports = {
       },
     },
     colors: {
-      'main': '#2c4456',
-      'main--light': 'rgba(44, 68, 86, 0.2)',
+      'main': 'rgba(44, 68, 86, 1)',
+      'main_02': 'rgba(44, 68, 86, 0.2)',
+      'main_07': 'rgba(44, 68, 86, 0.7)',
+      'main_08': 'rgba(44, 68, 86, 0.8)',
       'secondary': '#ff8d35',
       'red': 'red',
       'transparent': 'transparent',
@@ -20,7 +22,11 @@ module.exports = {
     extend: {
       borderWidth: {
         '1': '1px',
-       },
+      },
+      fontSize:{
+        'mainSize': '1.1vw',
+        '2mainSize': '2vw',
+      }
     },
   },
   plugins: [],

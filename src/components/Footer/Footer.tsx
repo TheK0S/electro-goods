@@ -1,4 +1,3 @@
-import './Footer.scss';
 import { Sidenav } from '../Navigation/Sidenav';
 
 export const Footer = () => {

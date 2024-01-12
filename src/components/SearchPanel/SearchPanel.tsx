@@ -18,7 +18,7 @@ export const SearchPanel = () => {
          " id="header-search-loader">
           </div>  {/*show loader*/ }
         <input type="text" className="searchForm-input w-full h-8 md:h-8 pr-8 pl-5 
-        border-1 border-solid border-main--light rounded-full text-base" 
+        border-1 border-solid border-main_02 rounded-full text-base" 
         id="searchForm-input text-sm" name="term" value="" placeholder="Пошук..." autoComplete="off"/>
           <button className="searchForm-icon-wrap absolute text-secondary right-[8px] top-[3px] bottom-0 rounded-r-10
            ">
