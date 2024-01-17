@@ -11,6 +11,7 @@ import { NotFound } from './pages/NotFound/NotFound';
 import { Header } from './components/Header/Header';
 import { PersonalArea } from './pages/PersonalArea/PersonalArea';
 import './App.scss';
+import { AdminPage } from './pages/AdminPage/AdminPage';
 
 const App = () => {
 
@@ -30,6 +31,7 @@ const App = () => {
     createRoutesFromElements(
       <Route path='/' element={<Root />}>
       <Route index element={<Home />} />
+      <Route path='/admin' element={<AdminPage />} />
       <Route path='/personalarea/:userId' loader={loader} element={<PersonalArea />} errorElement={<NotFound/>} />
       <Route path='*' element={<NotFound />} />
       </Route>
