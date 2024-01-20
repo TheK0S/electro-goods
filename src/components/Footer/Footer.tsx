@@ -1,4 +1,4 @@
-import { Sidenav } from '../Navigation/Sidenav';
+import { Sidenav } from '../navigation/Sidenav';
 
 export const Footer = () => {
     return (
