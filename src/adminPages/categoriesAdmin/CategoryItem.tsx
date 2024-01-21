@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Category from '../../interfaces/Category';
+import {Category} from '../../interfaces/admin.data';
 
 interface CategoryItemAdminProps{
     category: Category;

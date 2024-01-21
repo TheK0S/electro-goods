@@ -1,9 +1,9 @@
-import {CategoryItemAdmin} from './CategoryItemAdmin';
-import Category from '../../interfaces/Category';
+import {CategoryItemAdmin} from './CategoryItem';
+import { Category } from '../../interfaces/admin.data';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const CategoriesAdmin = () => {
+export const CategoriesList = () => {
     const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
@@ -29,9 +29,21 @@ export const CategoriesAdmin = () => {
                 <th><b>Имя на русском</b></th>
                 <th><b>Имя на украинском</b></th>
             </thead>
-            {categories.map((category: Category) => (
-                <CategoryItemAdmin key={category.id} category={category} removeCategory={removeCategory}/>
-            ))}
+            <tbody>
+              {categories.length ? (
+                categories.map((category: Category) => (
+                  <CategoryItemAdmin
+                  key={category.id}
+                  category={category}
+                  removeCategory={removeCategory}
+                  />
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={3}>Категорий пока нет</td>
+                </tr>
+              )}
+            </tbody>
         </table>
     );
 }
