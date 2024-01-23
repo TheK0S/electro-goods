@@ -1,7 +1,6 @@
 import {CategoryItem} from './componnents/CategoryItem';
 import { Category } from '../../interfaces/admin.data';
 import { useState, useEffect } from 'react';
-import { Link, Routes, Route } from "react-router-dom";
 import axios from 'axios';
 import { CreateCategoryModal } from './componnents/CreateCategoryModal';
 import { EditCategoryModal } from './componnents/EditCategoryModal';
@@ -43,10 +42,23 @@ export const CategoriesList = () => {
   return (
     <>
     <button
+    className='ml-auto'
       onClick={() => setCreateCategoryModalIsOpen(true)}
-    >Добавить категорию</button>
-      <CreateCategoryModal createCategory={addCategory} isOpen={createCategoryModalIsOpen} onClose={() => setCreateCategoryModalIsOpen(false)}/>
-      <table className='container'>
+    >Добавить категорию
+    </button>
+    <CreateCategoryModal
+      createCategory={addCategory}
+      isOpen={createCategoryModalIsOpen}
+      onClose={() => setCreateCategoryModalIsOpen(false)}
+    />
+    <EditCategoryModal
+      category={editingCategory}
+      updateCategory={updateCategory}
+      removeCategory={removeCategory}
+      isOpen={editCategoryModalIsOpen}
+      onClose={() => setEditCategoryModalIsOpen(false)}
+    />
+    <table className='container'>
         <thead>
           <tr>
           <th><b>Id</b></th>
@@ -61,16 +73,17 @@ export const CategoriesList = () => {
               key={category.id}
               category={category}
               setEditingCategory={setEditingCategory}
+              setEditCategoryModalIsOpen={setEditCategoryModalIsOpen}
               removeCategory={removeCategory}
               />
             ))
           ) : (
             <tr>
-              <td colSpan={3}>Категорий пока нет</td>
+              <td className='text-center font-bold' colSpan={3}>Категорий пока нет</td>
             </tr>
           )}
         </tbody>
-      </table>      
+    </table> 
     </>
-    );
+  );
 }
