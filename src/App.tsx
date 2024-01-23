@@ -11,7 +11,7 @@ import { NotFound } from './pages/NotFound/NotFound';
 import { Header } from './components/header/Header';
 import { PersonalArea } from './pages/PersonalArea/PersonalArea';
 import './App.scss';
-import { AdminPage } from './adminPages/AdminPage/AdminPage';
+import { AdminPage } from './AdminPanel/AdminPage';
 
 const App = () => {
 

@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
-import {Category} from '../../interfaces/admin.data';
+import {Category} from '../../../interfaces/admin.data';
 
-interface CategoryItemAdminProps{
+interface CategoryItemProps{
     category: Category;
+    setEditingCategory: Function;
     removeCategory: Function;
 }
 
-export const CategoryItemAdmin : React.FC<CategoryItemAdminProps> = ({category, removeCategory}) => {
+export const CategoryItem : React.FC<CategoryItemProps> = ({category, setEditingCategory, removeCategory}) => {
     return(
         <tr className="py-2 px-4 bg-main_02">
             <td className='px-2'>{category.id}</td>
             <td className='px-2'>{category.name}</td>
             <td className='px-2'>{category.nameUK}</td>
             <td className='px-2'>
-                <Link to={`/admin/category/update/${category.id}/${category.name}/${category.nameUK}`}>Изменить</Link>
+                <Link onClick={()=> setEditingCategory(category)} to="/admin/categories/edit">Изменить</Link>
             </td>
             <td className='px-2'>
                 <button onClick={()=> removeCategory(category)}>Удалить</button>

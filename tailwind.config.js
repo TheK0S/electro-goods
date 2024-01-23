@@ -16,9 +16,10 @@ module.exports = {
       'main_08': 'rgba(44, 68, 86, 0.8)',
       'secondary': '#ff8d35',
       'red': 'red',
-      'transparent': 'transparent',
+      'modal': 'rgb(240, 240, 240)',
+      'modalwrapper': 'rgba(0, 0, 0, 0.7)',
     },
-       
+
     extend: {
       borderWidth: {
         '1': '1px',
