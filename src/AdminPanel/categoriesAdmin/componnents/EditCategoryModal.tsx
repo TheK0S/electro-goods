@@ -11,12 +11,13 @@ interface EditCategoryModalProps {
 }
 
 export const EditCategoryModal: React.FC<EditCategoryModalProps> = ({category, updateCategory, removeCategory, isOpen, onClose}) => {
-    const formic = useFormik({
+    const formicEdit = useFormik({
         initialValues: {
             name: category?.name ?? '',
-            nameUK: category?.nameUK ??''
+            nameUK: category?.nameUK ?? ''
         },
         onSubmit: values =>{
+            
             
         },
     })
@@ -27,7 +28,7 @@ export const EditCategoryModal: React.FC<EditCategoryModalProps> = ({category, u
         >
             <h3 className="text-center mb-5 text-lg font-bold">Редактирование категории</h3>
             <form
-            onSubmit={formic.handleSubmit}
+            onSubmit={formicEdit.handleSubmit}
             className="flex flex-col"
             >
                 <label htmlFor="name">Имя категории на русском</label>
@@ -35,27 +36,27 @@ export const EditCategoryModal: React.FC<EditCategoryModalProps> = ({category, u
                     id="name"
                     name="name"
                     type="text"
-                    className="rounded mb-5 px-1"
-                    onChange={formic.handleChange}
-                    value={formic.values.name}
+                    className="rounded-md mb-5 px-1"
+                    onChange={formicEdit.handleChange}
+                    value={formicEdit.values.name}
                 />
                 <label htmlFor="name">Имя категории на украинском</label>
                 <input
                     id="nameUK"
                     name="nameUK"
                     type="text"
-                    className="rounded mb-5 px-1"
-                    onChange={formic.handleChange}
-                    value={formic.values.nameUK}
+                    className="rounded-md mb-5 px-1"
+                    onChange={formicEdit.handleChange}
+                    value={formicEdit.values.nameUK}
                 />
                 <div className="flex justify-around">
                 <button
                     type="submit"
-                    className="bg-secondary text-white font-bold py-2 px-4 rounded"
+                    className="bg-succes text-modal font-bold py-2 px-4 rounded-md"
                 >Сохранить</button>
                 <button
                     type="button"
-                    className="bg-secondary text-white font-bold py-2 px-4 rounded"
+                    className="bg-primary text-modal font-bold py-2 px-4 rounded-md"
                     onClick={() => onClose()}
                 >Отменить</button>
                 </div>

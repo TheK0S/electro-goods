@@ -1,6 +1,6 @@
 import {CategoryItem} from './componnents/CategoryItem';
 import { Category } from '../../interfaces/admin.data';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CreateCategoryModal } from './componnents/CreateCategoryModal';
 import { EditCategoryModal } from './componnents/EditCategoryModal';
@@ -23,9 +23,30 @@ export const CategoriesList = () => {
     })();
   }, []);
 
+
+  useEffect(() => {
+    if (createCategoryModalIsOpen || editCategoryModalIsOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [createCategoryModalIsOpen, editCategoryModalIsOpen]);
+
+
   const addCategory = (category: Category) => {
+    (async () => {
+      try {
+          const response = await axios.post(apiUrl + "/categoriesAdmin", {category});
+          setCategories([...categories, response.data]);
+      } catch (error) {
+          console.error('Ошибка загрузки категорий с сервера:', error);
+      }
+  })();
     
-    setCategories([...categories, category])
   }
 
   const updateCategory = (category: Category) => {
@@ -36,29 +57,40 @@ export const CategoriesList = () => {
   }
     
   const removeCategory = (category: Category) => {
-    setCategories(categories.filter(cat => cat.id !== category.id));
+    (async () => {
+      try{
+        const response = await axios.delete(apiUrl + `/categoriesAdmin/${category.id}`);
+        setCategories(categories.filter(cat => cat.id !== category.id));
+      }catch (error) {
+        console.error('Ошибка при удалении категории с сервера:', error);
+      }
+    })(); 
   }
 
   return (
     <>
     <button
-    className='ml-auto'
+    className='px-4 py-2 bg-succes rounded-md font-bold text-modal'
       onClick={() => setCreateCategoryModalIsOpen(true)}
     >Добавить категорию
     </button>
-    <CreateCategoryModal
+    {createCategoryModalIsOpen&&
+      <CreateCategoryModal
       createCategory={addCategory}
       isOpen={createCategoryModalIsOpen}
       onClose={() => setCreateCategoryModalIsOpen(false)}
     />
-    <EditCategoryModal
+    }
+    {editCategoryModalIsOpen&&
+      <EditCategoryModal
       category={editingCategory}
       updateCategory={updateCategory}
       removeCategory={removeCategory}
       isOpen={editCategoryModalIsOpen}
       onClose={() => setEditCategoryModalIsOpen(false)}
-    />
-    <table className='container'>
+  />
+    }
+    <table className='table-auto w-full border-spacing-2'>
         <thead>
           <tr>
           <th><b>Id</b></th>

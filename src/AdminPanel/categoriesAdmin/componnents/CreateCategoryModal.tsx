@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useFormik } from "formik";
+import { FormikBag, FormikErrors, FormikValues, useFormik } from "formik";
 import { apiUrl } from "../../../api";
 import { ModalWindow } from "../../components/ModalWindow";
+import { error } from "console";
 
 interface CreateCategoryModalProps{
     createCategory: Function;
@@ -15,47 +16,60 @@ export const CreateCategoryModal:React.FC<CreateCategoryModalProps> = ({createCa
             name: '',
             nameUK: ''
         },
-        onSubmit: values =>{
-            (async () => {
-                try {
-                    const response = await axios.post(apiUrl + "/categoriesAdmin", {id: 0, name: values.name, nameUK: values.nameUK});
-                    createCategory(response.data);
-                } catch (error) {
-                    console.error('Ошибка загрузки категорий с сервера:', error);
-                }
-            })();
-            
+        validate: values => {
+            let errors: FormikErrors<FormikValues> = {};
+            if(!values.name){
+                errors.name = 'Поле не может быть пустым'
+            }else if(values.name.length < 3){
+                errors.name = 'Поле должно иметь 3 и более символов'
+            }
+
+            if(!values.nameUK){
+                errors.nameUK = 'Поле не может быть пустым'
+            }else if(values.nameUK.length < 3){
+                errors.nameUK = 'Поле должно иметь 3 и более символов'
+            }
+
+            return errors;
+        },
+        onSubmit: values => {
             createCategory({id: 0, name: values.name, nameUK: values.nameUK});
             values.name = '';
             values.nameUK = '';
         },
     })
 
+    const {touched, errors} = formic;
+
     return (
         <ModalWindow isOpen={isOpen} onClose={onClose}>
             <h3 className="text-center mb-5 text-lg font-bold">Создание новой категории</h3>
             <form onSubmit={formic.handleSubmit} className="flex flex-col">
-                <label htmlFor="name">Имя категории на русском</label>
+                <label className="mt-5" htmlFor="name">Имя категории на русском</label>
                 <input
                     id="name"
                     name="name"
                     type="text"
-                    className="rounded mb-5 px-1"
+                    className="rounded-md px-1"
                     onChange={formic.handleChange}
+                    onBlur={formic.handleBlur}
                     value={formic.values.name}
                 />
-                <label htmlFor="name">Имя категории на украинском</label>
+                {touched.name && errors.name ? (<div className="font-bold text-danger">{errors.name}</div>) : null}
+                <label className="mt-5" htmlFor="name">Имя категории на украинском</label>
                 <input
                     id="nameUK"
                     name="nameUK"
                     type="text"
-                    className="rounded mb-5 px-1"
+                    className="rounded-md px-1"
                     onChange={formic.handleChange}
+                    onBlur={formic.handleBlur}
                     value={formic.values.nameUK}
                 />
+                {touched.nameUK && errors.nameUK ? (<div className="font-bold text-danger">{errors.nameUK}</div>) : null}
                 <button
                     type="submit"
-                    className="bg-secondary text-white font-bold py-2 px-4 rounded"
+                    className="bg-succes text-modal font-bold mt-5 py-2 px-4 rounded-md"
                 >Добавить категорию</button>
             </form>
         </ModalWindow>
