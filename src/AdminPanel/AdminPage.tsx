@@ -19,14 +19,14 @@ export const AdminPage = () => {
     return (
         <section className='flex-col'>
             <h1 className="px-2 py-1 bg-main_02 text-center">Панель администратора Electro-goods</h1>
-            <div className="flex">
-                <Link to={'/admin/categories'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded">Категории</Link>
-                <Link to={'/admin/countries'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded">Страны</Link>
-                <Link to={'/admin/manufacturers'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded">Производители</Link>
-                <Link to={'/admin/orders'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded">Заказы</Link>
-                <Link to={'/admin/orderstatuses'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded">Статусы заказа</Link>
-                <Link to={'/admin/products'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded">Продукты</Link>
-                <Link to={'/admin/roles'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded">Роли</Link>                
+            <div className="flex flex-wrap">
+                <Link to={'/admin/categories'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded-md">Категории</Link>
+                <Link to={'/admin/countries'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded-md">Страны</Link>
+                <Link to={'/admin/manufacturers'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded-md">Производители</Link>
+                <Link to={'/admin/orders'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded-md">Заказы</Link>
+                <Link to={'/admin/orderstatuses'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded-md">Статусы заказа</Link>
+                <Link to={'/admin/products'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded-md">Продукты</Link>
+                <Link to={'/admin/roles'} className="bg-secondary text-white font-bold py-2 px-4 mr-2 my-2 rounded-md">Роли</Link>                
             </div>
             <Routes>
                 <Route path="categories/*" element={<CategoriesList/>}/>
