@@ -17,7 +17,7 @@ export const SearchPanel = () => {
           </div>  {/*show loader*/ }
         <input type="text" className="searchForm-input w-full h-8 md:h-8 pr-8 pl-5 
         border-1 border-solid border-main_02 rounded-full text-base" 
-        id="searchForm-input text-sm" name="term" value="" placeholder="Пошук..." autoComplete="off"/>
+        id="searchForm-input text-sm" name="term" placeholder="Пошук..." autoComplete="off"/>
           <button className="searchForm-icon-wrap absolute text-secondary right-[8px] top-[3px] bottom-0 rounded-r-10
            ">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
