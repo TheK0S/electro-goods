@@ -30,30 +30,32 @@ export const CategoriesList = () => {
     } else {
       document.body.classList.remove('overflow-hidden');
     }
-
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-    };
   }, [createCategoryModalIsOpen, editCategoryModalIsOpen]);
 
 
-  const addCategory = (category: Category) => {
+  const createCategory = (category: Category) => {
     (async () => {
       try {
-          const response = await axios.post(apiUrl + "/categoriesAdmin", {category});
-          setCategories([...categories, response.data]);
+          const response = await axios.post(apiUrl + "/categoriesAdmin", category);
+          setCategories([...categories, response.data as Category]);
       } catch (error) {
-          console.error('Ошибка загрузки категорий с сервера:', error);
+          console.error('Ошибка при добавлении категории: ', error);
       }
-  })();
-    
+    })();    
   }
 
   const updateCategory = (category: Category) => {
-    setCategories(prevCategories =>
-      prevCategories.map(item =>
-        item.id === category.id? {...item, ...category} : item
-      ));
+    (async () => {
+      try {
+          const response = await axios.put(`${apiUrl}/categoriesAdmin/${category.id}`, category);
+          setCategories(prevCategories =>
+            prevCategories.map(item =>
+              item.id === category.id? {...item, ...category} : item
+          ));
+      } catch (error) {
+          console.error('Ошибка при изменении категории: ', error);
+      }
+    })();
   }
     
   const removeCategory = (category: Category) => {
@@ -62,7 +64,7 @@ export const CategoriesList = () => {
         const response = await axios.delete(apiUrl + `/categoriesAdmin/${category.id}`);
         setCategories(categories.filter(cat => cat.id !== category.id));
       }catch (error) {
-        console.error('Ошибка при удалении категории с сервера:', error);
+        console.error('Ошибка при удалении категории: ', error);
       }
     })(); 
   }
@@ -76,7 +78,7 @@ export const CategoriesList = () => {
     </button>
     {createCategoryModalIsOpen&&
       <CreateCategoryModal
-      createCategory={addCategory}
+      createCategory={createCategory}
       isOpen={createCategoryModalIsOpen}
       onClose={() => setCreateCategoryModalIsOpen(false)}
     />
@@ -85,7 +87,6 @@ export const CategoriesList = () => {
       <EditCategoryModal
       category={editingCategory}
       updateCategory={updateCategory}
-      removeCategory={removeCategory}
       isOpen={editCategoryModalIsOpen}
       onClose={() => setEditCategoryModalIsOpen(false)}
   />

@@ -5,20 +5,19 @@ import { ModalWindow } from "../../components/ModalWindow";
 interface EditCategoryModalProps {
     category: Category | null;
     updateCategory: Function;
-    removeCategory: Function;
     isOpen: boolean;
     onClose: Function;
 }
 
-export const EditCategoryModal: React.FC<EditCategoryModalProps> = ({category, updateCategory, removeCategory, isOpen, onClose}) => {
+export const EditCategoryModal: React.FC<EditCategoryModalProps> = ({category, updateCategory, isOpen, onClose}) => {
     const formicEdit = useFormik({
         initialValues: {
             name: category?.name ?? '',
             nameUK: category?.nameUK ?? ''
         },
         onSubmit: values =>{
-            
-            
+            updateCategory({id: category?.id, name: values.name, nameUK: values.nameUK});
+            onClose();
         },
     })
     return (
@@ -26,12 +25,12 @@ export const EditCategoryModal: React.FC<EditCategoryModalProps> = ({category, u
             isOpen={isOpen}
             onClose={onClose}
         >
-            <h3 className="text-center mb-5 text-lg font-bold">Редактирование категории</h3>
+            <h3 className="text-center text-lg font-bold">Редактирование категории</h3>
             <form
             onSubmit={formicEdit.handleSubmit}
             className="flex flex-col"
             >
-                <label htmlFor="name">Имя категории на русском</label>
+                <label htmlFor="name" className="mt-5">Имя категории на русском</label>
                 <input
                     id="name"
                     name="name"
@@ -40,25 +39,27 @@ export const EditCategoryModal: React.FC<EditCategoryModalProps> = ({category, u
                     onChange={formicEdit.handleChange}
                     value={formicEdit.values.name}
                 />
-                <label htmlFor="name">Имя категории на украинском</label>
+                <label htmlFor="name" className="mt-5">Имя категории на украинском</label>
                 <input
                     id="nameUK"
                     name="nameUK"
                     type="text"
-                    className="rounded-md mb-5 px-1"
+                    className="rounded-md px-1"
                     onChange={formicEdit.handleChange}
                     value={formicEdit.values.nameUK}
                 />
-                <div className="flex justify-around">
+                <div className="flex mt-10 justify-center">
                 <button
                     type="submit"
-                    className="bg-succes text-modal font-bold py-2 px-4 rounded-md"
-                >Сохранить</button>
+                    className="bg-succes text-modal font-bold py-2 px-4 mx-2 rounded-md"
+                >Сохранить
+                </button>
                 <button
                     type="button"
-                    className="bg-primary text-modal font-bold py-2 px-4 rounded-md"
+                    className="bg-primary text-modal font-bold py-2 px-4 mx-2 rounded-md"
                     onClick={() => onClose()}
-                >Отменить</button>
+                >Отменить
+                </button>
                 </div>
 
             </form>

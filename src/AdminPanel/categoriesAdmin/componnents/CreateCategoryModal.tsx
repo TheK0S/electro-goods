@@ -1,8 +1,5 @@
-import axios from "axios";
-import { FormikBag, FormikErrors, FormikValues, useFormik } from "formik";
-import { apiUrl } from "../../../api";
+import { FormikErrors, FormikValues, useFormik } from "formik";
 import { ModalWindow } from "../../components/ModalWindow";
-import { error } from "console";
 
 interface CreateCategoryModalProps{
     createCategory: Function;
@@ -34,16 +31,15 @@ export const CreateCategoryModal:React.FC<CreateCategoryModalProps> = ({createCa
         },
         onSubmit: values => {
             createCategory({id: 0, name: values.name, nameUK: values.nameUK});
-            values.name = '';
-            values.nameUK = '';
+            resetForm();
         },
     })
 
-    const {touched, errors} = formic;
+    const {touched, errors, resetForm} = formic;
 
     return (
         <ModalWindow isOpen={isOpen} onClose={onClose}>
-            <h3 className="text-center mb-5 text-lg font-bold">Создание новой категории</h3>
+            <h3 className="text-center text-lg font-bold">Создание новой категории</h3>
             <form onSubmit={formic.handleSubmit} className="flex flex-col">
                 <label className="mt-5" htmlFor="name">Имя категории на русском</label>
                 <input
@@ -69,7 +65,7 @@ export const CreateCategoryModal:React.FC<CreateCategoryModalProps> = ({createCa
                 {touched.nameUK && errors.nameUK ? (<div className="font-bold text-danger">{errors.nameUK}</div>) : null}
                 <button
                     type="submit"
-                    className="bg-succes text-modal font-bold mt-5 py-2 px-4 rounded-md"
+                    className="bg-succes text-modal font-bold mt-10 py-2 px-4 rounded-md"
                 >Добавить категорию</button>
             </form>
         </ModalWindow>
