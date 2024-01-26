@@ -39,7 +39,7 @@ export const CreateCategoryModal:React.FC<CreateCategoryModalProps> = ({createCa
 
     return (
         <ModalWindow isOpen={isOpen} onClose={onClose}>
-            <h3 className="text-center text-lg font-bold">Создание новой категории</h3>
+            <h3 className="text-center text-lg font-bold">Добавление новой категории</h3>
             <form onSubmit={formic.handleSubmit} className="flex flex-col">
                 <label className="mt-5" htmlFor="name">Имя категории на русском</label>
                 <input
