@@ -12,6 +12,7 @@ interface EditProductModalProps {
 export const EditProductModal: React.FC<EditProductModalProps> = ({product, updateProduct, isOpen, onClose}) => {
     const formicEdit = useFormik({
         initialValues: {
+            id: product?.id ?? 0,
             name: product?.name ?? '',
             nameUK: product?.nameUK ?? '',
             description: product?.description ?? '',
@@ -21,24 +22,16 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({product, upda
             stockQuantity: product?.stockQuantity ?? '',
             discount: product?.discount ?? '',
             isActive: product?.isActive ?? false,
+            categoryId: product?.categoryId ?? '',
             category: product?.category ?? '',
+            countryId: product?.countryId ?? '',
             country: product?.country ?? '',
+            manufacturerId: product?.manufacturerId ?? '',
             manufacturer: product?.manufacturer ?? '',
             productAttributes: product?.productAttributes ?? '',
         },
         onSubmit: values =>{
-            updateProduct({
-                id: product?.id,
-                name: values.name,
-                nameUK: values.nameUK,
-                description: values.description,
-                descriptionUK: values.descriptionUK,
-                imgPath: values.imgPath,
-                price: values.price,
-                stockQuantity: values.stockQuantity,
-                discount: values.discount,
-                isActive: values.isActive,
-            });
+            updateProduct(values as Product);
             onClose();
         },
     })

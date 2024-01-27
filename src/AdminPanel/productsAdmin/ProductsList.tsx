@@ -74,10 +74,11 @@ export const ProductsList = () => {
     (async () => {
       setPopupIsOpen(false);
       try {
+        console.log(product);
         const response = await axios.put(`${apiUrl}/productsAdmin/${product.id}`, product);
         setProducts(prevProducts =>
           prevProducts.map(item =>
-            item.id === product.id? {...item, ...product} : item
+            item.id === product.id? {...item, ...response.data} : item
         ));
         setPopup({
           title: 'Выполнено',

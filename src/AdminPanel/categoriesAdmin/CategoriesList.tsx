@@ -67,7 +67,7 @@ export const CategoriesList = () => {
       }finally{
         setPopupIsOpen(true);
       }
-    })();    
+    })();
   }
 
   const updateCategory = (category: Category) => {
