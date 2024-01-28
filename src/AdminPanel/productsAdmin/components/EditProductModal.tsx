@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
-import { Product } from "../../../interfaces/admin.data";
+import { Product, ProductAttribute } from "../../../interfaces/admin.data";
 import { ModalWindow } from "../../components/ModalWindow";
+import { useState } from "react";
 
 interface EditProductModalProps {
     product: Product | null;
@@ -10,6 +11,9 @@ interface EditProductModalProps {
 }
 
 export const EditProductModal: React.FC<EditProductModalProps> = ({product, updateProduct, isOpen, onClose}) => {
+
+    const [attributes, setAttributes] = useState<ProductAttribute[]>(product?.productAttributes ?? []);
+
     const formicEdit = useFormik({
         initialValues: {
             id: product?.id ?? 0,
@@ -23,18 +27,32 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({product, upda
             discount: product?.discount ?? '',
             isActive: product?.isActive ?? false,
             categoryId: product?.categoryId ?? '',
-            category: product?.category ?? '',
+            category: product?.category ?? {},
             countryId: product?.countryId ?? '',
-            country: product?.country ?? '',
+            country: product?.country ?? {},
             manufacturerId: product?.manufacturerId ?? '',
-            manufacturer: product?.manufacturer ?? '',
-            productAttributes: product?.productAttributes ?? '',
+            manufacturer: product?.manufacturer ?? {},
+            productAttributes: attributes,
         },
         onSubmit: values =>{
             updateProduct(values as Product);
             onClose();
         },
     })
+
+    const addAttributeFields = () => {
+        const emptyProductAttribut: ProductAttribute = {
+            attributeId: 0,
+            productId: product?.id ?? 0,
+            attributeName: '',
+            attributeNameUK: '',
+            attributeValue: '',
+            attributeValueUK: ''
+        }
+        setAttributes(prevAttributes => [...prevAttributes, emptyProductAttribut])
+        formicEdit.values.productAttributes.push(emptyProductAttribut)
+    }
+
     return (
         <ModalWindow
             isOpen={isOpen}
@@ -126,6 +144,54 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({product, upda
                     onChange={formicEdit.handleChange}
                 />Активен ли продукт:
                 </label>
+                {formicEdit.values.productAttributes.map((attribute, index) => (
+                    <div key={attribute.attributeId} className="flex flex-col mt-5">
+                        <p className="text-center">Атрибут №{index + 1}</p>
+                        <label htmlFor={attribute.attributeName} className="font-bold mt-5">Имя атрибута на русском</label>
+                        <input
+                            id={attribute.attributeName}
+                            name={attribute.attributeName}
+                            type="text"
+                            className="rounded-md px-1"
+                            onChange={formicEdit.handleChange}
+                            value={attribute.attributeName}
+                        />
+                        <label htmlFor={attribute.attributeValue} className="font-bold mt-5">Значение атрибута на русском</label>
+                        <input
+                            id={attribute.attributeValue}
+                            name={attribute.attributeValue}
+                            type="text"
+                            className="rounded-md px-1"
+                            onChange={formicEdit.handleChange}
+                            value={attribute.attributeValue}
+                        />
+                        <label htmlFor={attribute.attributeNameUK} className="font-bold mt-5">Имя атрибута на украинском</label>
+                        <input
+                            id={attribute.attributeNameUK}
+                            name={attribute.attributeNameUK}
+                            type="text"
+                            className="rounded-md px-1"
+                            onChange={formicEdit.handleChange}
+                            value={attribute.attributeNameUK}
+                        />                        
+                        <label htmlFor={attribute.attributeValueUK} className="font-bold mt-5">Значение атрибута на украинском</label>
+                        <input
+                            id={attribute.attributeValueUK}
+                            name={attribute.attributeValueUK}
+                            type="text"
+                            className="rounded-md px-1"
+                            onChange={formicEdit.handleChange}
+                            value={attribute.attributeValueUK}
+                        />
+                    </div>
+                ))
+                }
+                <button
+                    type="button"
+                    className="bg-succes text-modal font-bold mt-5 py-2 px-4 rounded-md"
+                    onClick={()=> addAttributeFields()}
+                >Добавить к продукту новый аттрибут
+                </button>
                 <div className="flex mt-10 justify-center">
                 <button
                     type="submit"
