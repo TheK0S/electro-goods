@@ -57,7 +57,8 @@ export const EditAttributes: React.FC<EditAttributesProps> = ({attributes}) => {
         <button
             type="button"
             className="bg-succes text-modal font-bold py-2 px-4 mx-2 rounded-md"
-        >Добавить аттрибут
+        >
+            Добавить аттрибут
         </button>
         </>
     );

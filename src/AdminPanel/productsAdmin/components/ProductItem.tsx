@@ -1,4 +1,6 @@
 import {Product} from '../../../interfaces/admin.data';
+import { EditButton } from '../../components/EditButton';
+import { RemoveButton } from '../../components/RemoveButton';
 
 interface ProductItemProps{
     product: Product;
@@ -24,16 +26,8 @@ export const ProductItem : React.FC<ProductItemProps> = ({product, setEditingPro
             <td className='px-2 text-center'>{product.discount}</td>
             <td className='px-2 text-center'>{product.category?.name}</td>
             <td className='flex justify-end py-2'>
-                <button
-                    className='w-10 h-10 mr-2 bg-yellow rounded-lg shadow-lg hover:scale-110 transition-transform duration-300'
-                    onClick={()=> changeButtonHandler()}
-                >&#9998;
-                </button>
-                <button
-                    className='w-10 h-10 mr-2 bg-red rounded-lg shadow-lg hover:scale-110 transition-transform duration-300'
-                    onClick={()=> removeProduct(product)}
-                >&#10060;
-                </button>
+                <EditButton onClick={() => changeButtonHandler()} />
+                <RemoveButton onClick={()=> removeProduct(product)} />
             </td>
         </tr>
     );

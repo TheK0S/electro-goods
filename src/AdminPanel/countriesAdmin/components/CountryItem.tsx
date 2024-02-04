@@ -1,4 +1,6 @@
 import {Country} from '../../../interfaces/admin.data';
+import { EditButton } from '../../components/EditButton';
+import { RemoveButton } from '../../components/RemoveButton';
 
 interface CountryItemProps{
     country: Country;
@@ -21,16 +23,8 @@ export const CountryItem : React.FC<CountryItemProps> = ({country, setEditingCou
             <td className='px-2'>{country.name}</td>
             <td className='px-2'>{country.nameUK}</td>
             <td className='flex justify-end py-2'>
-                <button
-                    className='w-10 h-10 mr-2 bg-yellow rounded-lg shadow-lg hover:scale-110 transition-transform duration-300'
-                    onClick={()=> changeButtonHandler()}
-                >&#9998;
-                </button>
-                <button
-                    className='w-10 h-10 mr-2 bg-red rounded-lg shadow-lg hover:scale-110 transition-transform duration-300'
-                    onClick={()=> removeCountry(country)}
-                >&#10060;
-                </button>
+                <EditButton onClick={() => changeButtonHandler()} />
+                <RemoveButton onClick={() => removeCountry(country)} />
             </td>
         </tr>
     );
