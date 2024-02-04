@@ -20,12 +20,18 @@ module.exports = {
     },
        
     extend: {
+      screens: {
+        'xs': '475px',
+      },  
       borderWidth: {
         '1': '1px',
       },
       fontSize:{
-        'mainSize': '1.1vw',
-        '2mainSize': '2vw',
+        // 'mainSize': '1.1vw',
+        // '2mainSize': '2vw',
+      },
+      width: {
+        '18': '72px'
       }
     },
   },

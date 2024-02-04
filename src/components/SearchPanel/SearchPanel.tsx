@@ -6,7 +6,9 @@ export const SearchPanel = () => {
   }
 
   return (
-    <div className="searchForm-wrap block h-8 md:h-8 mt-5 md:mt-0 lg:min-w-[300px] xl:min-w-[500px]">
+    <div className="searchForm-wrap block h-8 md:h-8 
+                    lg:min-w-[300px] 
+                    xl:min-w-[500px]">
       <div className="searchForm-element-wrapper flex relative">
         <div className="searchForm-loader-circle block absolute top-1/2 
         translate-y-1/2 w-5 h-5 

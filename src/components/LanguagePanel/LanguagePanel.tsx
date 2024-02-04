@@ -8,20 +8,23 @@ export enum Languages {
 export const LanguagePanel = () => {
 
     const [language, setLanguage] = useState(Languages.Russian);
-    const buttonClass = 'languagePanel-item w-10';
-    const buttonClassChoisen = 'languagePanel-item bg-secondary w-10';
+    const buttonClass = 'languagePanel-item w-1/2 ';
+    const buttonClassChoisen = 'languagePanel-item bg-secondary w-1/2 ';
 
     const setbuttonClass=(lang:string)=>{
         return lang===language?buttonClassChoisen:buttonClass
     }
 
     return (
-        <div className="languagePanel flex justify-between h-10">
-            <button onClick={()=>setLanguage(Languages.Russian)} 
-                className={setbuttonClass(Languages.Russian)}>{Languages.Russian}
-            </button>
+        <div className="languagePanel flex justify-between text-[10px] w-12 h-6 
+                        sm:w-18 sm:h-9 sm:text-xs
+                        lg:w-20 lg:h-10 lg:text-sm">
+            
             <button onClick={()=>setLanguage(Languages.Ukrainian)} 
                 className={setbuttonClass(Languages.Ukrainian)}>{Languages.Ukrainian}
+            </button>
+            <button onClick={()=>setLanguage(Languages.Russian)} 
+                className={setbuttonClass(Languages.Russian)}>{Languages.Russian}
             </button>
         </div>
     );
