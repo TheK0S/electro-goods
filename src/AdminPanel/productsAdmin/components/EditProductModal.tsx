@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import { Product, ProductAttribute } from "../../../interfaces/admin.data";
 import { ModalWindow } from "../../components/ModalWindow";
 import { useState } from "react";
+import { EditAttributes } from "./EditAttributes";
+import { AttributesList } from "./AttributesList";
 
 interface EditProductModalProps {
     product: Product | null;
@@ -142,55 +144,60 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({product, upda
                     type="checkbox"
                     className="mx-1"
                     onChange={formicEdit.handleChange}
-                />Активен ли продукт:
+                />
+                    Активен ли продукт:
                 </label>
                 {formicEdit.values.productAttributes.map((attribute, index) => (
-                    <div key={attribute.attributeId} className="flex flex-col mt-5">
-                        <p className="text-center">Атрибут №{index + 1}</p>
-                        <label htmlFor={attribute.attributeName} className="font-bold mt-5">Имя атрибута на русском</label>
-                        <input
-                            id={attribute.attributeName}
-                            name={attribute.attributeName}
-                            type="text"
-                            className="rounded-md px-1"
-                            onChange={formicEdit.handleChange}
-                            value={attribute.attributeName}
-                        />
-                        <label htmlFor={attribute.attributeValue} className="font-bold mt-5">Значение атрибута на русском</label>
-                        <input
-                            id={attribute.attributeValue}
-                            name={attribute.attributeValue}
-                            type="text"
-                            className="rounded-md px-1"
-                            onChange={formicEdit.handleChange}
-                            value={attribute.attributeValue}
-                        />
-                        <label htmlFor={attribute.attributeNameUK} className="font-bold mt-5">Имя атрибута на украинском</label>
-                        <input
-                            id={attribute.attributeNameUK}
-                            name={attribute.attributeNameUK}
-                            type="text"
-                            className="rounded-md px-1"
-                            onChange={formicEdit.handleChange}
-                            value={attribute.attributeNameUK}
-                        />                        
-                        <label htmlFor={attribute.attributeValueUK} className="font-bold mt-5">Значение атрибута на украинском</label>
-                        <input
-                            id={attribute.attributeValueUK}
-                            name={attribute.attributeValueUK}
-                            type="text"
-                            className="rounded-md px-1"
-                            onChange={formicEdit.handleChange}
-                            value={attribute.attributeValueUK}
-                        />
-                    </div>
+                    // <ul className="flex flex-col px-10">
+                    //     <li key={attribute.attributeId} className="flex flex-col mt-5">
+                    //         <p className="text-center">Атрибут №{index + 1}</p>
+                    //         <label htmlFor={attribute.attributeName} className="font-bold mt-5">Имя атрибута на русском</label>
+                    //         <input
+                    //             id={attribute.attributeName}
+                    //             name={attribute.attributeName}
+                    //             type="text"
+                    //             className="rounded-md px-1"
+                    //             onChange={formicEdit.handleChange}
+                    //             value={attribute.attributeName}
+                    //         />
+                    //         <label htmlFor={attribute.attributeValue} className="font-bold mt-5">Значение атрибута на русском</label>
+                    //         <input
+                    //             id={attribute.attributeValue}
+                    //             name={attribute.attributeValue}
+                    //             type="text"
+                    //             className="rounded-md px-1"
+                    //             onChange={formicEdit.handleChange}
+                    //             value={attribute.attributeValue}
+                    //         />
+                    //         <label htmlFor={attribute.attributeNameUK} className="font-bold mt-5">Имя атрибута на украинском</label>
+                    //         <input
+                    //             id={attribute.attributeNameUK}
+                    //             name={attribute.attributeNameUK}
+                    //             type="text"
+                    //             className="rounded-md px-1"
+                    //             onChange={formicEdit.handleChange}
+                    //             value={attribute.attributeNameUK}
+                    //         />                        
+                    //         <label htmlFor={attribute.attributeValueUK} className="font-bold mt-5">Значение атрибута на украинском</label>
+                    //         <input
+                    //             id={attribute.attributeValueUK}
+                    //             name={attribute.attributeValueUK}
+                    //             type="text"
+                    //             className="rounded-md px-1"
+                    //             onChange={formicEdit.handleChange}
+                    //             value={attribute.attributeValueUK}
+                    //         />
+                    //     </li>
+                    // </ul>
+                    <AttributesList attributes={formicEdit.values.productAttributes}/>
                 ))
                 }
                 <button
                     type="button"
                     className="bg-succes text-modal font-bold mt-5 py-2 px-4 rounded-md"
                     onClick={()=> addAttributeFields()}
-                >Добавить к продукту новый аттрибут
+                >
+                    Добавить к продукту новый аттрибут
                 </button>
                 <div className="flex mt-10 justify-center">
                 <button
