@@ -1,9 +1,9 @@
-import {CategoryItem} from './componnents/CategoryItem';
+import {CategoryItem} from './components/CategoryItem';
 import { Category } from '../../interfaces/admin.data';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { CreateCategoryModal } from './componnents/CreateCategoryModal';
-import { EditCategoryModal } from './componnents/EditCategoryModal';
+import { CreateCategoryModal } from './components/CreateCategoryModal';
+import { EditCategoryModal } from './components/EditCategoryModal';
 import { apiUrl } from '../../api';
 import { Popup, PopupProps } from '../components/Popup';
 
@@ -12,7 +12,7 @@ export const CategoriesList = () => {
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   const [createCategoryModalIsOpen, setCreateCategoryModalIsOpen] = useState<boolean>(false);
   const [editCategoryModalIsOpen, setEditCategoryModalIsOpen] = useState<boolean>(false);
-  const [popuoIsOpen, setPopupIsOpen] = useState(false);
+  const [popupIsOpen, setPopupIsOpen] = useState(false);
   const [popup, setPopup] = useState<PopupProps>({onClose: () => setPopupIsOpen(false)});
 
   //load categories
@@ -67,7 +67,7 @@ export const CategoriesList = () => {
       }finally{
         setPopupIsOpen(true);
       }
-    })();    
+    })();
   }
 
   const updateCategory = (category: Category) => {
@@ -133,7 +133,7 @@ export const CategoriesList = () => {
     >Добавить категорию
     </button>
 
-    {popuoIsOpen &&
+    {popupIsOpen &&
       <Popup title={popup.title} text={popup.text} onClose={popup.onClose} className={popup.className}/>
     }
 
@@ -142,7 +142,7 @@ export const CategoriesList = () => {
       createCategory={createCategory}
       isOpen={createCategoryModalIsOpen}
       onClose={() => setCreateCategoryModalIsOpen(false)}
-    />
+      />
     }
     {editCategoryModalIsOpen&&
       <EditCategoryModal
@@ -150,7 +150,7 @@ export const CategoriesList = () => {
       updateCategory={updateCategory}
       isOpen={editCategoryModalIsOpen}
       onClose={() => setEditCategoryModalIsOpen(false)}
-  />
+      />
     }
     <table className='table-auto w-full border-spacing-2 mb-5'>
         <thead>

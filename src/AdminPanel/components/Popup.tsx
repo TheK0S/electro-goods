@@ -11,7 +11,7 @@ export interface PopupProps {
 export const Popup: React.FC<PopupProps> = ({title, text, onClose, className}) => {
     setTimeout(() => onClose(), 3000);
     return(
-        <div className={`${className} p-4 rounded-md shadow-lg fixed z-50 top-5 right-5`}>
+        <div className={`${className} border p-4 rounded-md shadow-lg fixed z-50 top-5 right-5`}>
             <h5 className="text-center font-bold">{title}</h5>
             <p>{text}</p>
         </div>
