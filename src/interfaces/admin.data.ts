@@ -72,6 +72,7 @@ export interface Product {
 
 export interface ProductAttribute {
     attributeId: number;
+    productId: number;
     attributeName: string;
     attributeNameUK: string;
     attributeValue: string;
