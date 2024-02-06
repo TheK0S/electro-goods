@@ -25,7 +25,7 @@ module.exports = {
       'dark': '#343a40',
       'red': 'red',
       'yellow': 'yellow',
-      
+      'transparent': 'transparent',
       'modal': 'rgb(240, 240, 240)',
       'modalwrapper': 'rgba(0, 0, 0, 0.7)',
     },

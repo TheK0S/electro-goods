@@ -10,7 +10,7 @@ export const ContactsPanel = () => {
         <div className='contactsPanel-wrap flex text-xs items-center relative '>
             {isAdditionalContactPanel
                 ?<div 
-                    className="additionalContactPanel absolute w-full h-20 z-10 bg-[#ffffff] 
+                    className="additionalContactPanel block absolute w-full h-20 z-10 bg-[#ffffff] 
                             right-[70%] top-[-8px] rounded-[5%] rounded-tr-[21px] 
                             border-1 border-main_02 shadow-xl shadow-main xs:hidden">
                     <div>контакти:</div>
