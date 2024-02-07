@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import { Product, ProductAttribute } from "../../../interfaces/admin.data";
 import { ModalWindow } from "../../components/ModalWindow";
 import { useState } from "react";
-import { EditAttributes } from "./EditAttributes";
 import { AttributesList } from "./AttributesList";
 
 interface EditProductModalProps {

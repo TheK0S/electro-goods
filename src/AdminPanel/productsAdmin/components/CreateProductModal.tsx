@@ -1,5 +1,6 @@
 import { FormikErrors, FormikValues, useFormik } from "formik";
 import { ModalWindow } from "../../components/ModalWindow";
+import { Product } from "../../../interfaces/admin.data";
 
 interface CreateProductModalProps{
     createProduct: Function;
@@ -10,27 +11,26 @@ interface CreateProductModalProps{
 export const CreateProductModal:React.FC<CreateProductModalProps> = ({createProduct, isOpen, onClose}) => {
     const formic = useFormik({
         initialValues: {
-            name: '',
-            nameUK: ''
+            ...{} as Product
         },
         validate: values => {
             let errors: FormikErrors<FormikValues> = {};
-            if(!values.name){
-                errors.name = 'Поле не может быть пустым'
-            }else if(values.name.length < 3){
-                errors.name = 'Поле должно иметь 3 и более символов'
-            }
-
-            if(!values.nameUK){
-                errors.nameUK = 'Поле не может быть пустым'
-            }else if(values.nameUK.length < 3){
-                errors.nameUK = 'Поле должно иметь 3 и более символов'
-            }
+            if(!values.name) errors.name = 'Поле не может быть пустым';
+            if(!values.nameUK) errors.nameUK = 'Поле не может быть пустым';
+            if(!values.description) errors.description = 'Поле не может быть пустым';
+            if(!values.descriptionUK) errors.descriptionUK = 'Поле не может быть пустым';
+            if(!values.imgPath) errors.imgPath = 'Поле не может быть пустым';
+            if(!values.price || values.price < 0) errors.nameUK = 'Поле не может быть пустым или отрецательным';
+            if(!values.stockQuantity || values.stockQuantity < 0) errors.stockQuantity = 'Поле не может быть пустым или отрецательным';
+            if(!values.discount || values.discount < 0) errors.discount = 'Поле не может быть пустым или отрецательным';
+            if(!values.categoryId || values.categoryId < 0) errors.discount = 'Поле не может быть пустым или отрецательным';
+            if(!values.countryId || values.countryId < 0) errors.countryId = 'Поле не может быть пустым или отрецательным';
+            if(!values.manufacturerId || values.manufacturerId < 0) errors.manufacturerId = 'Поле не может быть пустым или отрецательным';
 
             return errors;
         },
         onSubmit: values => {
-            createProduct({id: 0, name: values.name, nameUK: values.nameUK});
+            createProduct(values as Product);
             resetForm();
         },
     })
