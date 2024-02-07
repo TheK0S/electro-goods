@@ -25,18 +25,24 @@ module.exports = {
       'dark': '#343a40',
       'red': 'red',
       'yellow': 'yellow',
-      
+      'transparent': 'transparent',
       'modal': 'rgb(240, 240, 240)',
       'modalwrapper': 'rgba(0, 0, 0, 0.7)',
     },
 
     extend: {
+      screens: {
+        'xs': '475px',
+      },  
       borderWidth: {
         '1': '1px',
       },
       fontSize:{
-        'mainSize': '1.1vw',
-        '2mainSize': '2vw',
+        // 'mainSize': '1.1vw',
+        // '2mainSize': '2vw',
+      },
+      width: {
+        '18': '72px'
       }
     },
   },
