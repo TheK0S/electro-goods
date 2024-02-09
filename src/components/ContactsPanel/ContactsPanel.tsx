@@ -27,7 +27,7 @@ export const ContactsPanel = () => {
                                     p-3 
                                     xs:hidden">
                         <div className="mt-6 mx-auto relative ">контакти:</div>
-                        <div>{PhoneNumber}</div>
+                        <a href={'tel:'+PhoneNumber} title="зателефонуйте нам">{PhoneNumber}</a>
                         </div>
                     :''
                 }    

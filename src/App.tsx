@@ -17,7 +17,7 @@ const App = () => {
 
   const Root = () => {
     return (
-      <div className="container py-3 ">
+      <div className="container relative h-[100vh] py-3 ">
         <div>
           <Header />
           <Outlet />
