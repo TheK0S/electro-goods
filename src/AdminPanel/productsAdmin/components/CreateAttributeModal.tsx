@@ -2,16 +2,17 @@ import { FormikErrors, FormikValues, useFormik } from "formik";
 import { ProductAttribute } from "../../../interfaces/admin.data"
 import { ModalWindow } from "../../components/ModalWindow";
 
-interface CreateAttributeProps {
+interface CreateAttributeModalProps {
     createAttribut: Function;    
     isOpen: boolean;
     onClose: Function;
 }
 
-export const CreateAttribute: React.FC<CreateAttributeProps> = ({createAttribut, isOpen, onClose}) => {
+export const CreateAttributeModal: React.FC<CreateAttributeModalProps> = ({createAttribut, isOpen, onClose}) => {
     const formic = useFormik({
         initialValues: {
-            ...{} as ProductAttribute
+            ...{} as ProductAttribute,
+            attributeId: 0
         },
         validate: values => {
             let errors: FormikErrors<FormikValues> = {};
@@ -22,7 +23,7 @@ export const CreateAttribute: React.FC<CreateAttributeProps> = ({createAttribut,
             return errors;
         },
         onSubmit: values => {
-            createAttribut(values);
+            createAttribut(values as ProductAttribute);
             resetForm();
         },
     })
@@ -33,7 +34,7 @@ export const CreateAttribute: React.FC<CreateAttributeProps> = ({createAttribut,
         <ModalWindow isOpen={isOpen} onClose={onClose}>
             <h3 className="text-center text-lg font-bold">Добавление нового продукта</h3>
             <form onSubmit={formic.handleSubmit} className="flex flex-col">
-                <label className="mt-5" htmlFor="name">Имя атрибута на русском</label>
+                <label className="mt-5" htmlFor="attributeName">Имя атрибута на русском</label>
                 <input
                     id="attributeName"
                     name="attributeName"
@@ -44,7 +45,7 @@ export const CreateAttribute: React.FC<CreateAttributeProps> = ({createAttribut,
                     value={formic.values.attributeName}
                 />
                 {touched.attributeName && errors.attributeName ? (<div className="font-bold text-danger">{errors.attributeName}</div>) : null}
-                <label className="mt-5" htmlFor="name">Значение на русском</label>
+                <label className="mt-5" htmlFor="attributeValue">Значение на русском</label>
                 <input
                     id="attributeValue"
                     name="attributeValue"
@@ -55,10 +56,10 @@ export const CreateAttribute: React.FC<CreateAttributeProps> = ({createAttribut,
                     value={formic.values.attributeValue}
                 />
                 {touched.attributeValue && errors.attributeValue ? (<div className="font-bold text-danger">{errors.attributeValue}</div>) : null}
-                <label className="mt-5" htmlFor="name">Имя атрибута на украинском</label>
+                <label className="mt-5" htmlFor="attributeNameUK">Имя атрибута на украинском</label>
                 <input
-                    id="attributeName"
-                    name="attributeName"
+                    id="attributeNameUK"
+                    name="attributeNameUK"
                     type="text"
                     className="rounded-md px-1"
                     onChange={formic.handleChange}
@@ -66,7 +67,7 @@ export const CreateAttribute: React.FC<CreateAttributeProps> = ({createAttribut,
                     value={formic.values.attributeNameUK}
                 />
                 {touched.attributeNameUK && errors.attributeNameUK ? (<div className="font-bold text-danger">{errors.attributeNameUK}</div>) : null}
-                <label className="mt-5" htmlFor="name">Значение на украинском</label>
+                <label className="mt-5" htmlFor="attributeValueUK">Значение на украинском</label>
                 <input
                     id="attributeValueUK"
                     name="attributeValueUK"

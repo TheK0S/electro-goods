@@ -4,10 +4,11 @@ import { RemoveButton } from "../../components/RemoveButton";
 
 interface AttributesListProps{
     attributes: ProductAttribute[];
-
+    handlerEditClick: Function;
+    handlerRemoveClick: Function;
 }
 
-export const AttributesList: React.FC<AttributesListProps> = ({attributes}) => {
+export const AttributesList: React.FC<AttributesListProps> = ({attributes, handlerEditClick, handlerRemoveClick}) => {
     return(
             <table className='table-auto w-full border-spacing-2 my-5'>
                 <thead>
@@ -38,8 +39,8 @@ export const AttributesList: React.FC<AttributesListProps> = ({attributes}) => {
                                 <td className='px-2 text-center'>
                                     <p>{attribute.attributeValueUK}</p>
                                 </td>
-                                <EditButton onClick={() => {}} />
-                                <RemoveButton onClick={() => {}} />
+                                <EditButton onClick={() => handlerEditClick(attribute.attributeId)} />
+                                <RemoveButton onClick={() => handlerRemoveClick(attribute.attributeId)} />
                             </tr>
                         ))
                     }

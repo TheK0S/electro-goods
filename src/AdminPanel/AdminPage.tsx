@@ -6,6 +6,7 @@ import { ManufacturersList } from "./manufacrurersAdmin/ManufacturersList";
 import { OrdersList } from "./ordersAdmin/OrdersList";
 import { ProductsList } from "./productsAdmin/ProductsList";
 import { OrderStatusesList } from "./orderStatusesAdmin/OrderStatusesList";
+import { EditProduct } from "./productsAdmin/EditProduct";
 
 export const AdminPage = () => {
     console.log('render AdminPage')
@@ -26,6 +27,7 @@ export const AdminPage = () => {
                 <Route path="manufacturers/*" element={<ManufacturersList/>}/>
                 <Route path="orders/*" element={<OrdersList/>}/>
                 <Route path="orderstatuses/*" element={<OrderStatusesList/>}/>
+                <Route path="products/edit/:id" element={<EditProduct/>}/>
                 <Route path="products/*" element={<ProductsList/>}/>
             </Routes>
         </section>

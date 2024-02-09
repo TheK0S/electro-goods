@@ -3,15 +3,14 @@ import { Product } from '../../interfaces/admin.data';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CreateProductModal } from './components/CreateProductModal';
-import { EditProductModal } from './components/EditProductModal';
 import { apiUrl } from '../../api';
 import { Popup, PopupProps } from '../components/Popup';
+import { Route, Routes } from 'react-router-dom';
+import { EditProduct } from './EditProduct';
 
 export const ProductsList = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [createProductModalIsOpen, setCreateProductModalIsOpen] = useState<boolean>(false);
-  const [editProductModalIsOpen, setEditProductModalIsOpen] = useState<boolean>(false);
   const [popupIsOpen, setPopupIsOpen] = useState(false);
   const [popup, setPopup] = useState<PopupProps>({onClose: () => setPopupIsOpen(false)});
 
@@ -33,16 +32,6 @@ export const ProductsList = () => {
       }
     })();
   }, []);
-
-//scroll lock if modal window is open
-  useEffect(() => {
-    if (createProductModalIsOpen || editProductModalIsOpen) {
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
-  }, [createProductModalIsOpen, editProductModalIsOpen]);
-
 
   const createProduct = (product: Product) => {
     (async () => {
@@ -70,36 +59,6 @@ export const ProductsList = () => {
     })();    
   }
 
-  const updateProduct = (product: Product) => {
-    (async () => {
-      setPopupIsOpen(false);
-      try {
-        console.log(product);
-        const response = await axios.put(`${apiUrl}/productsAdmin/${product.id}`, product);
-        setProducts(prevProducts =>
-          prevProducts.map(item =>
-            item.id === product.id? {...item, ...response.data} : item
-        ));
-        setPopup({
-          title: 'Выполнено',
-          text: 'Продукт успешно изменен',
-          onClose: () => setPopupIsOpen(false),
-          className: 'bg-success_light'
-        });
-      } catch (error) {
-        console.error('Ошибка при изменении продукта: ', error);
-        setPopup({
-          title: 'Ошибка!',
-          text: 'Не удалось изменить продукт',
-          onClose: () => setPopupIsOpen(false),
-          className: 'bg-danger_light'
-        });          
-      }finally{
-        setPopupIsOpen(true);
-      }
-    })();
-  }
-    
   const removeProduct = (product: Product) => {
     (async () => {
       setPopupIsOpen(false);
@@ -145,14 +104,6 @@ export const ProductsList = () => {
       onClose={() => setCreateProductModalIsOpen(false)}
       />
     }
-    {editProductModalIsOpen&&
-      <EditProductModal
-      product={editingProduct}
-      updateProduct={updateProduct}
-      isOpen={editProductModalIsOpen}
-      onClose={() => setEditProductModalIsOpen(false)}
-      />
-    }
     <table className='table-auto w-full border-spacing-2 mb-5'>
         <thead>
           <tr>
@@ -170,8 +121,6 @@ export const ProductsList = () => {
               <ProductItem
               key={product.id}
               product={product}
-              setEditingProduct={setEditingProduct}
-              setEditProductModalIsOpen={setEditProductModalIsOpen}
               removeProduct={removeProduct}
               />
             ))
@@ -181,7 +130,7 @@ export const ProductsList = () => {
             </tr>
           )}
         </tbody>
-    </table> 
+    </table>
     </>
   );
 }

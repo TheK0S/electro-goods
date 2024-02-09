@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
 import { ProductAttribute } from "../../../interfaces/admin.data"
 
-interface EditAttributesProps {
+interface EditAttributesModalProps {
     attributes: ProductAttribute[];    
 }
 
-export const EditAttributes: React.FC<EditAttributesProps> = ({attributes}) => {
+export const EditAttributesModal: React.FC<EditAttributesModalProps> = ({attributes}) => {
     const formik = useFormik({
         initialValues: {
             attributesVal: attributes
