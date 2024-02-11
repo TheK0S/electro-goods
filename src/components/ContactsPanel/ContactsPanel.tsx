@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const PhoneNumber:string = '+380972222225';
+import {PhoneNumber} from '../../constants';
 
 export const ContactsPanel = () => {
 

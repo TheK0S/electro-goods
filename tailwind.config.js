@@ -1,11 +1,14 @@
+import {containerPadding} from './src/constants';
+
 /** @type {import('tailwindcss').Config} */
+ 
 module.exports = {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
     container:{
       center:true,
       padding: {
-        DEFAULT: '5px',
+        DEFAULT: containerPadding+'px',
         xl: '40px',
       },
     },
@@ -42,7 +45,11 @@ module.exports = {
         // '2mainSize': '2vw',
       },
       width: {
-        '18': '72px'
+        '18': '72px',
+        'w': containerPadding
+      },
+      padding:{
+        'containerPadding':containerPadding,
       }
     },
   },
