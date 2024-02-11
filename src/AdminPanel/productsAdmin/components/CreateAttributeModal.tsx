@@ -81,7 +81,9 @@ export const CreateAttributeModal: React.FC<CreateAttributeModalProps> = ({creat
                 <button
                     type="submit"
                     className="bg-succes text-modal font-bold mt-10 py-2 px-4 rounded-md"
-                >Добавить аттрибут</button>
+                >
+                    Добавить аттрибут
+                </button>
             </form>
         </ModalWindow>
     );

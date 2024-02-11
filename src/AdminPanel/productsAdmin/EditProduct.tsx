@@ -5,7 +5,7 @@ import { AttributesList } from "./components/AttributesList";
 import { CreateAttributeModal } from "./components/CreateAttributeModal";
 import axios from "axios";
 import { apiUrl } from "../../api";
-import { PopupProps } from "../components/Popup";
+import { Popup, PopupProps } from "../components/Popup";
 import { Link, useParams } from "react-router-dom";
 
 
@@ -38,6 +38,7 @@ export const EditProduct = () => {
           try {
             console.log(product);
             const response = await axios.put(`${apiUrl}/productsAdmin/${product.id}`, product);
+            console.log(response);
             setPopup({
               title: 'Выполнено',
               text: 'Продукт успешно изменен',
@@ -59,13 +60,12 @@ export const EditProduct = () => {
       }
 
     const createAttribute = async (attribute: ProductAttribute) => {
-        try {
-            const response = await axios.post(apiUrl + "/productattributesadmin", attribute)
-
-            console.log('attribute added')
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const response = await axios.post(apiUrl + "/productattributesadmin", attribute)
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        formicEdit.values.productAttributes?.push(attribute);
     }
 
     const formicEdit = useFormik({
@@ -86,8 +86,11 @@ export const EditProduct = () => {
     }
 
     return (
-        <>
-        <h3 className="text-center text-lg font-bold">Редактирование категории</h3>
+        <div className="container max-w-5xl">
+            {popupIsOpen &&
+                <Popup title={popup.title} text={popup.text} onClose={popup.onClose} className={popup.className}/>
+            }
+            <h3 className="text-center text-lg font-bold">Редактирование продукта</h3>
             <form
             onSubmit={formicEdit.handleSubmit}
             className="flex flex-col"
@@ -171,10 +174,15 @@ export const EditProduct = () => {
                     type="checkbox"
                     className="mx-1"
                     onChange={formicEdit.handleChange}
+                    checked={formicEdit.values.isActive}
                 />
                     Активен ли продукт:
                 </label>
-                <CreateAttributeModal createAttribut={createAttribute} isOpen={createAttributeModalIsOpen} onClose={() => setCreateAttributeModalIsOpen(false)}/>
+                <CreateAttributeModal 
+                    createAttribut={createAttribute} 
+                    isOpen={createAttributeModalIsOpen}
+                    onClose={() => setCreateAttributeModalIsOpen(false)}
+                />
                 {formicEdit.values.productAttributes &&
                     <AttributesList
                         attributes={formicEdit.values.productAttributes}
@@ -184,13 +192,14 @@ export const EditProduct = () => {
                 }
                 <button
                     type="button"
-                    className="bg-succes text-modal font-bold mt-5 py-2 px-4 rounded-md"
+                    className="bg-succes text-modal font-bold mt-5 py-2 px-4 rounded-md w-fit"
                     onClick={()=> setCreateAttributeModalIsOpen(true)}
                 >
                     Добавить к продукту новый аттрибут
                 </button>
                 <div className="flex mt-10 justify-center">
                 <button
+                    //onClick={() => updateProduct(product)}
                     type="submit"
                     className="bg-succes text-modal font-bold py-2 px-4 mx-2 rounded-md"
                 >Сохранить
@@ -203,6 +212,6 @@ export const EditProduct = () => {
                 </div>
 
             </form>
-        </>
+        </div>
     );
 }
