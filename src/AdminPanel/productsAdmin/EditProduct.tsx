@@ -60,8 +60,8 @@ export const EditProduct = () => {
 
     const createAttribute = async (attribute: ProductAttribute) => {
         try {
-            const response = await axios.post(apiUrl + "/productattributesadmin", attribute)
-
+            //const response = await axios.post(apiUrl + "/productAttributesAdmin", attribute)
+            formicEdit.values.productAttributes?.push(attribute)
             console.log('attribute added')
         } catch (error) {
             console.log(error);
@@ -87,10 +87,16 @@ export const EditProduct = () => {
 
     return (
         <>
-        <h3 className="text-center text-lg font-bold">Редактирование категории</h3>
+            <h3 className="text-center text-lg font-bold">Редактирование категории</h3>
+            <CreateAttributeModal
+                createAttribut={createAttribute}
+                isOpen={createAttributeModalIsOpen}
+                onClose={() => setCreateAttributeModalIsOpen(false)}
+            />
+            
             <form
-            onSubmit={formicEdit.handleSubmit}
-            className="flex flex-col"
+                onSubmit={formicEdit.handleSubmit}
+                className="flex flex-col"
             >
                 <label htmlFor="name" className="font-bold mt-5">Имя на русском:</label>
                 <input
@@ -174,14 +180,6 @@ export const EditProduct = () => {
                 />
                     Активен ли продукт:
                 </label>
-                <CreateAttributeModal createAttribut={createAttribute} isOpen={createAttributeModalIsOpen} onClose={() => setCreateAttributeModalIsOpen(false)}/>
-                {formicEdit.values.productAttributes &&
-                    <AttributesList
-                        attributes={formicEdit.values.productAttributes}
-                        handlerEditClick={handlerEditAttributClick}
-                        handlerRemoveClick={handlerRemoveAttributClick}
-                    />
-                }
                 <button
                     type="button"
                     className="bg-succes text-modal font-bold mt-5 py-2 px-4 rounded-md"
@@ -189,20 +187,28 @@ export const EditProduct = () => {
                 >
                     Добавить к продукту новый аттрибут
                 </button>
+                {formicEdit.values.productAttributes &&
+                    <AttributesList
+                        attributes={formicEdit.values.productAttributes}
+                        handlerEditClick={handlerEditAttributClick}
+                        handlerRemoveClick={handlerRemoveAttributClick}
+                    />
+                }
                 <div className="flex mt-10 justify-center">
-                <button
-                    type="submit"
-                    className="bg-succes text-modal font-bold py-2 px-4 mx-2 rounded-md"
-                >Сохранить
-                </button>
-                <Link
-                    to="/admin/products"
-                    className="bg-primary text-modal font-bold py-2 px-4 mx-2 rounded-md"
-                >Отменить
-                </Link>
+                    <button
+                        type="submit"
+                        className="bg-succes text-modal font-bold py-2 px-4 mx-2 rounded-md"
+                    >
+                        Сохранить
+                    </button>
+                    <Link
+                        to="/admin/products"
+                        className="bg-primary text-modal font-bold py-2 px-4 mx-2 rounded-md"
+                    >
+                        Отменить
+                    </Link>
                 </div>
-
-            </form>
+            </form>            
         </>
     );
 }

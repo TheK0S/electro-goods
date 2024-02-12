@@ -1,5 +1,6 @@
 import { FormikErrors, FormikValues, useFormik } from "formik";
 import { ModalWindow } from "../../components/ModalWindow";
+import { Category } from "../../../interfaces/admin.data";
 
 interface CreateCategoryModalProps{
     createCategory: Function;
@@ -30,7 +31,7 @@ export const CreateCategoryModal:React.FC<CreateCategoryModalProps> = ({createCa
             return errors;
         },
         onSubmit: values => {
-            createCategory({id: 0, name: values.name, nameUK: values.nameUK});
+            createCategory(values as Category);
             resetForm();
         },
     })
@@ -66,7 +67,9 @@ export const CreateCategoryModal:React.FC<CreateCategoryModalProps> = ({createCa
                 <button
                     type="submit"
                     className="bg-succes text-modal font-bold mt-10 py-2 px-4 rounded-md"
-                >Добавить категорию</button>
+                >
+                    Добавить категорию
+                </button>
             </form>
         </ModalWindow>
     );

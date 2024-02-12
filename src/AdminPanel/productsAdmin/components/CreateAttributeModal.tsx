@@ -20,6 +20,7 @@ export const CreateAttributeModal: React.FC<CreateAttributeModalProps> = ({creat
             if(!values.attributeValue) errors.attributeValue = 'Поле не может быть пустым';
             if(!values.attributeNameUK) errors.attributeNameUK = 'Поле не может быть пустым';
             if(!values.attributeValueUK) errors.attributeValueUK = 'Поле не может быть пустым';
+
             return errors;
         },
         onSubmit: values => {
