@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CreateCountryModal } from './components/CreateCountryModal';
 import { EditCountryModal } from './components/EditCountryModal';
-import { apiUrl } from '../../api';
+import { apiUrl } from '../../servises/api';
 import { Popup, PopupProps } from '../components/Popup';
 
 export const CountriesList = () => {
@@ -19,7 +19,7 @@ export const CountriesList = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(apiUrl + "/countriesAdmin");
+        const response = await axios.get(apiUrl + "/countriesAdmin1");
         setCountries(response.data);
       } catch (error) {
         console.error('Ошибка загрузки страны с сервера:', error);
