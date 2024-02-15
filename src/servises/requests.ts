@@ -1,13 +1,13 @@
 import axios from "axios";
 import { apiUrl } from "./api";
 import { useCallback, useState } from "react";
-import { PopupProps } from "../components/popupStatusMessege/PopapStatusMessege";
+import { PopupProps } from "../components/PopupStatusMessage/PopupStatusMessage";
 
 
 export const useHttp = () => {
 
-  const [isPopupStatusMessegeOpen, setIsPopupStatusMessegeOpen] = useState(false);
-  const [popup, setPopup] = useState<PopupProps>();
+  // const [isPopupStatusMessageOpen, setIsPopupStatusMessageOpen] = useState(false);
+  // const [popup, setPopup] = useState<PopupProps>();
 
   axios.defaults.baseURL = apiUrl;
     const request = useCallback(async(url:string, method = 'GET') =>{

@@ -5,15 +5,15 @@ export interface PopupProps {
     text?: string;
     isOpen: boolean;
     className?: string;
-    onClose: Function    
+    showPopupMessege: Function    
 }
 
-export const PopupStatusMessege:React.FC<PopupProps> = ({title, text, isOpen, className, onClose}) => {
+export const PopupStatusMessage:React.FC<PopupProps> = ({title, text, isOpen, className, showPopupMessege}) => {
     
    
     useEffect(()=>{
-        // setTimeout(() => onClose(), 3000);
-        return
+        setTimeout(() =>{showPopupMessege(false), console.log('showPopupMessege')}, 2000);
+        return 
     },[])
     
     return(
