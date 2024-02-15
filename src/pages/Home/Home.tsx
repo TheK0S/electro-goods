@@ -1,6 +1,6 @@
 import './Home.scss';
 import { Link } from 'react-router-dom';
-import { Categories } from '../../components/categoriesList/Categories';
+import { Categories } from '../../components/categories/Categories';
 
 export const Home = () => {
     return (

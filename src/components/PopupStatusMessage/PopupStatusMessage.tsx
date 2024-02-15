@@ -5,24 +5,23 @@ export interface PopupProps {
     text?: string;
     isOpen: boolean;
     className?: string;
-    showPopupMessege: Function    
+    showPopupMessage: Function
 }
 
-export const PopupStatusMessage:React.FC<PopupProps> = ({title, text, isOpen, className, showPopupMessege}) => {
-    
+export const PopupStatusMessage:React.FC<PopupProps> = ({title, text, isOpen, className, showPopupMessage}) => {
    
     useEffect(()=>{
-        setTimeout(() =>{showPopupMessege(false), console.log('showPopupMessege')}, 2000);
+        setTimeout(() =>{
+            showPopupMessage(false) 
+            console.log('showPopupMessege')}, 2000);
         return 
     },[])
-    
     return(
         isOpen?
-            <div className={`${className} border p-4 rounded-md shadow-lg fixed z-50 top-5 right-5`}>
+            <div onClick={()=>showPopupMessage(false)} className={`${className} border p-4 rounded-md shadow-lg fixed z-50 top-5 right-5`}>
                         <h5 className="text-center font-bold">{title}</h5>
-                        <p>{text}</p>
+                        <p >{text}</p>
                     </div>
-                
         :null
         );
 }
