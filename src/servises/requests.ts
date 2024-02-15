@@ -1,8 +1,13 @@
 import axios from "axios";
 import { apiUrl } from "./api";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { PopupProps } from "../components/popupStatusMessege/PopapStatusMessege";
+
 
 export const useHttp = () => {
+
+  const [isPopupStatusMessegeOpen, setIsPopupStatusMessegeOpen] = useState(false);
+  const [popup, setPopup] = useState<PopupProps>();
 
   axios.defaults.baseURL = apiUrl;
     const request = useCallback(async(url:string, method = 'GET') =>{
@@ -12,7 +17,13 @@ export const useHttp = () => {
           return data;
         } catch (error) {
           console.error('Ошибка загрузки категорий с сервера:', error);
-          alert("err") // add alert windos enstead
+          // setPopup({
+          //   title: 'Ошибка!',
+          //   text: 'Не удалось загрузить страны',
+          //   isOpen: true,
+          //   className: 'bg-danger_light',
+          //   onClose: () => setIsPopupStatusMessegeOpen(false)
+          // });
         }    
     }
     , [])

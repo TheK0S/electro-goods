@@ -19,7 +19,7 @@ export const CountriesList = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(apiUrl + "/countriesAdmin1");
+        const response = await axios.get(apiUrl + "/countriesAdmin");
         setCountries(response.data);
       } catch (error) {
         console.error('Ошибка загрузки страны с сервера:', error);
