@@ -23,5 +23,5 @@ export const PopupStatusMessage:React.FC<PopupProps> = ({title, text, isOpen, cl
                         <p >{text}</p>
                     </div>
         :null
-        );
+    );
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { apiUrl } from "./api";
 import { useCallback, useState } from "react";
-// import { PopupProps } from "../components/PopupStatusMessage/PopupStatusMessage";
+import { PopupStatusMessage } from "../components/PopupStatusMessage/PopupStatusMessage";
 
 export const useHttp = () => {
 
@@ -13,6 +13,7 @@ export const useHttp = () => {
           return data;
         } catch (error) {
           console.error('Ошибка загрузки категорий с сервера:', error);
+          return [];
         }    
     }
     , [])
