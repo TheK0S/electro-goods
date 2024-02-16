@@ -1,44 +1,77 @@
-import { useFormik } from "formik";
-import { Product, ProductAttribute } from "../../interfaces/admin.data";
-import { useEffect, useState } from "react";
+import { Field, useField, useFormik } from "formik";
+import { Category, Country, Manufacturer, Product, ProductAttribute } from "../../interfaces/admin.data";
+import React, { useEffect, useState } from "react";
 import { AttributesList } from "./components/AttributesList";
 import { CreateAttributeModal } from "./components/CreateAttributeModal";
 import axios from "axios";
 import { apiUrl } from "../../api";
 import { Popup, PopupProps } from "../components/Popup";
 import { Link, useParams } from "react-router-dom";
+import { Select, SelectOption } from "../components/Select";
+import { count } from "console";
+import { Value } from "sass";
 
 
 export const EditProduct = () => {
     console.log('edit product mount')
     const [product, setProduct] = useState<Product>({} as Product)
-    //const [attributes, setAttributes] = useState<ProductAttribute[]>(product?.productAttributes ?? []);
+    const [categories, setCategories] = useState<Category[]>([])
+    const [countries, setCountries] = useState<Country[]>([])
+    const [manufacturers, setManufacturers] = useState<Manufacturer[]>([])
+    const [attributes, setAttributes] = useState<ProductAttribute[]>([]);
+
+    const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
+    const [selectedCountryId, setSelectedCountryId] = useState<string>('');
+    const [selectedManufacturerId, setSelectedManufacturerId] = useState<string>('');
+
     const [popupIsOpen, setPopupIsOpen] = useState<boolean>(false);
     const [popup, setPopup] = useState<PopupProps>({onClose: () => setPopupIsOpen(false)});
     const [createAttributeModalIsOpen, setCreateAttributeModalIsOpen] = useState(false);
-    const {id} = useParams<string>();
+
+    const {id} = useParams<string>();    
 
     useEffect(() => {
-        const getProduct = async (productId: number) => {
-            const response = await axios.get(`${apiUrl}/productsAdmin/${productId}`);
-            setProduct(response.data);
-        }
-        getProduct(Number(id));
-    }, [])
-
-    useEffect(() => {
+        setAttributes(product.productAttributes ?? [] as ProductAttribute[])
         formicEdit.setValues({
-            ...product
+            ...product,
+            categoryId: Number(selectedCategoryId),
+            countryId: Number(selectedCountryId),
+            manufacturerId: Number(selectedManufacturerId),
+            productAttributes: attributes
         });
     }, [product]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [productResponse, categoriesResponse, countriesResponse, manufacturersResponse] = await Promise.all([
+                    axios.get(`${apiUrl}/productsAdmin/${id}`),
+                    axios.get(`${apiUrl}/categoriesAdmin`),
+                    axios.get(`${apiUrl}/countriesAdmin`),
+                    axios.get(`${apiUrl}/manufacturersAdmin`)
+                ]);
+    
+                setProduct(productResponse.data);
+                setCategories(categoriesResponse.data);
+                setCountries(countriesResponse.data);
+                setManufacturers(manufacturersResponse.data);
+            } catch (error) {
+                console.error('Ошибка при загрузке данных:', error);
+            }
+        };
+    
+        fetchData();
+    }, [id]);
 
     const updateProduct = (product: Product) => {
         (async () => {
           setPopupIsOpen(false);
           try {
-            console.log(product);
+            product.category = null;
+            product.country = null;
+            product.manufacturer = null;
             const response = await axios.put(`${apiUrl}/productsAdmin/${product.id}`, product);
-            console.log(response);
+
             setPopup({
               title: 'Выполнено',
               text: 'Продукт успешно изменен',
@@ -61,9 +94,8 @@ export const EditProduct = () => {
 
     const createAttribute = async (attribute: ProductAttribute) => {
         try {
-            //const response = await axios.post(apiUrl + "/productAttributesAdmin", attribute)
-            formicEdit.values.productAttributes?.push(attribute)
-            console.log('attribute added')
+            await axios.post(apiUrl + "/productAttributesAdmin", attribute)
+            setAttributes(prev => [...prev, attribute])
         } catch (error) {
             console.log(error);
         }
@@ -89,8 +121,20 @@ export const EditProduct = () => {
     }
 
     const handlerRemoveAttributClick = (id: number) => {
-        //setAttributes(prev => prev.filter(attribute => id !== attribute.attributeId))
+        setAttributes(prev => prev.filter(attribute => id !== attribute.attributeId))
     }
+
+    const handleCategoryIdChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedCategoryId(event.target.value);
+    };
+
+    const handleCountryIdChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedCountryId(event.target.value);
+    };
+
+    const handleManufacturerIdChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedManufacturerId(event.target.value);
+    };
 
     return (
 
@@ -191,6 +235,55 @@ export const EditProduct = () => {
                     />
                         Активен ли продукт:
                     </label>
+                    <div className="flex items-center mt-5">
+                        <label htmlFor="countryId" className="font-bold mr-3">Категория:</label>
+                        <Select
+                            name="countryId"
+                            options={categories.map(category => ({label: category.name, value: category.name} as SelectOption))}
+                        />
+                    </div>
+                    <div className="flex items-center mt-5">
+                        <label htmlFor="countrySelect" className="font-bold mr-3">Страна:</label>
+                        <select
+                            name="countrySelect"
+                            id="countrySelect"
+                            className="p-1"
+                            value={formicEdit.values.countryId}
+                            onChange={formicEdit.handleChange}
+                        >
+                            {countries &&
+                                countries.map(country => (
+                                    <option
+                                        key={country.id}
+                                        value={country.id}
+                                    >
+                                        {country.name}
+                                    </option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className="flex items-center mt-5">
+                        <label htmlFor="manufacturerSelect" className="font-bold mr-3">Производитель:</label>
+                        <select
+                            name="manufacturerSelect"
+                            id="manufacturerSelect"
+                            className="p-1"
+                            value={formicEdit.values.manufacturerId}
+                            onChange={formicEdit.handleChange}
+                        >
+                            {manufacturers &&
+                                manufacturers.map(manufacturer => (
+                                    <option
+                                        key={manufacturer.id}
+                                        value={manufacturer.id}
+                                    >
+                                        {manufacturer.name}
+                                    </option>
+                                ))
+                            }
+                        </select>
+                    </div>
                     <button
                         type="button"
                         className="bg-succes text-modal font-bold mt-5 py-2 px-4 rounded-md"
@@ -206,18 +299,6 @@ export const EditProduct = () => {
                         />
                     }
                 <div className="flex mt-10 justify-center">
-                    <button
-                        type="submit"
-                        className="bg-succes text-modal font-bold py-2 px-4 mx-2 rounded-md"
-                    >
-                        Сохранить
-                    </button>
-                    <Link
-                        to="/admin/products"
-                        className="bg-primary text-modal font-bold py-2 px-4 mx-2 rounded-md"
-                    >
-                        Отменить
-                    </Link>
                     <button
                         type="submit"
                         className="bg-succes text-modal font-bold py-2 px-4 mx-2 rounded-md"
