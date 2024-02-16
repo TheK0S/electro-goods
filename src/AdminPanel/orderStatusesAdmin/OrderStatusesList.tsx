@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CreateOrderStatusModal } from './components/CreateOrderStatusModal';
 import { EditOrderStatusModal } from './components/EditOrderStatusModal';
-import { apiUrl } from '../../api';
+import { apiUrl } from '../../servises/api';
 import { Popup, PopupProps } from '../components/Popup';
 
 export const OrderStatusesList = () => {

@@ -6,7 +6,9 @@ export const SearchPanel = () => {
   }
 
   return (
-    <div className="searchForm-wrap block h-8 md:h-8 mt-5 md:mt-0 lg:min-w-[300px] xl:min-w-[500px]">
+    <div className="searchForm-wrap block h-8 md:h-8 
+                    lg:min-w-[300px] 
+                    xl:min-w-[500px]">
       <div className="searchForm-element-wrapper flex relative">
         <div className="searchForm-loader-circle block absolute top-1/2 
         translate-y-1/2 w-5 h-5 
@@ -17,7 +19,7 @@ export const SearchPanel = () => {
           </div>  {/*show loader*/ }
         <input type="text" className="searchForm-input w-full h-8 md:h-8 pr-8 pl-5 
         border-1 border-solid border-main_02 rounded-full text-base" 
-        id="searchForm-input text-sm" name="term" placeholder="Пошук..." autoComplete="off"/>
+        id="searchForm-input text-sm" name="term"  placeholder="Пошук..." autoComplete="off"/>
           <button className="searchForm-icon-wrap absolute text-secondary right-[8px] top-[3px] bottom-0 rounded-r-10
            ">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
@@ -26,8 +28,6 @@ export const SearchPanel = () => {
           </button>
       </div>
       <div className="search-results" id="header-search-result">
-        {/* <ul className="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" > */}
-        {/* </ul> */}
       </div>
     </div>
   );

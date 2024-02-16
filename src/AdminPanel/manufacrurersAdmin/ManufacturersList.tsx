@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CreateManufacturerModal } from './components/CreateManufacturerModal';
 import { EditManufacturerModal } from './components/EditManufacturerModal';
-import { apiUrl } from '../../api';
+import { apiUrl } from '../../servises/api';
 import { Popup, PopupProps } from '../components/Popup';
 
 export const ManufacturersList = () => {
