@@ -21,19 +21,23 @@ export const Categories = () => {
         });
    
     function showPopupMessage(status:boolean){
-        setPopup (state =>({...popup , isOpen: status}))
+        setPopup (popup =>({...popup , isOpen: status}));
     }
-    
+        
     useEffect(() => {
       getCategories();
+      if (categories.length === 0){showPopupMessage(true)}
     }, []);
+  
+    const popupStatusMessageProps = {...popup, showPopupMessage}
 console.log('ServResp',categories)
 
-const popupStatusMessageProps = {...popup, showPopupMessage}
     return (
         <>
             <h1>категории</h1>
-            <PopupStatusMessage {...popupStatusMessageProps} />
+            <div onClick={()=>{showPopupMessage(false)}}>
+                <PopupStatusMessage {...popupStatusMessageProps} />
+            </div>
             <div>{categories.length 
             ? 
                 categories.map((category: Category) => (
@@ -41,7 +45,7 @@ const popupStatusMessageProps = {...popup, showPopupMessage}
                     key={category.id}
                     {...category} />)) 
             : 
-                <div className='text-center font-bold'>Категорий пока нет</div>}
+                <div className='text-center font-bold'> данных пока нет</div>}
             </div>
         </>
     )
