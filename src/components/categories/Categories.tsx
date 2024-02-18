@@ -22,17 +22,12 @@ export const Categories = () => {
    
     function showPopupMessage(status:boolean){
         setPopup (state =>({...popup , isOpen: status}))
-        // setPopup({
-        //     title: 'Ошибка!',
-        //     text: 'Не удалось загрузить страны',
-        //     isOpen: false,
-        //     className: 'bg-danger_light',
-        //     })
     }
     
     useEffect(() => {
       getCategories();
     }, []);
+console.log('ServResp',categories)
 
 const popupStatusMessageProps = {...popup, showPopupMessage}
     return (
@@ -42,7 +37,9 @@ const popupStatusMessageProps = {...popup, showPopupMessage}
             <div>{categories.length 
             ? 
                 categories.map((category: Category) => (
-                <CategoryItem {...category}/>)) 
+                <CategoryItem 
+                    key={category.id}
+                    {...category} />)) 
             : 
                 <div className='text-center font-bold'>Категорий пока нет</div>}
             </div>

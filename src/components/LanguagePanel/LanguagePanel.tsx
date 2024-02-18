@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../store/store'
+import { languageChange } from '../../store/language.slice';
 
 export enum Languages {
     Ukrainian = 'УКР',
@@ -7,12 +9,18 @@ export enum Languages {
 
 export const LanguagePanel = () => {
 
-    const [language, setLanguage] = useState(Languages.Russian);
+    const mainLanguage = useSelector ((state:RootState) => state.languageReducer.languageValue);
+    const dispatch = useDispatch();
+    console.log(mainLanguage);
+
     const buttonClass = 'languagePanel-item w-1/2 ';
     const buttonClassChoisen = 'languagePanel-item bg-secondary w-1/2 ';
 
+    const setLanguage = (lang:string) => {
+        dispatch(languageChange(lang))
+    }
     const setbuttonClass=(lang:string)=>{
-        return lang===language?buttonClassChoisen:buttonClass
+        return lang===mainLanguage?buttonClassChoisen:buttonClass
     }
 
     return (

@@ -13,7 +13,7 @@ export const PopupStatusMessage:React.FC<PopupProps> = ({title, text, isOpen, cl
     useEffect(()=>{
         setTimeout(() =>{
             showPopupMessage(false) 
-            console.log('showPopupMessege')}, 2000);
+        }, 2000);
         return 
     },[])
     return(

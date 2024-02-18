@@ -13,6 +13,7 @@ export const useHttp = () => {
           return data;
         } catch (error) {
           console.error('Ошибка загрузки категорий с сервера:', error);
+          return error
         }    
     }
     , [])
