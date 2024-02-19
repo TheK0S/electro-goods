@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useHttp } from "../../servises/requests";
+import { useHttp } from "../../hooks/UseHttp";
 import { Category } from "../../interfaces/admin.data";
 import { PopupStatusMessage, } from "../PopupStatusMessage/PopupStatusMessage";
 import { CategoryItem } from "./categoryItem";

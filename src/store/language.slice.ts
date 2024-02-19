@@ -24,6 +24,7 @@ export const languageSlice = createSlice({
 const {actions, reducer} = languageSlice;
 
 export default reducer;
+export {actions};
 export const {
      languageChange,
 } = actions;

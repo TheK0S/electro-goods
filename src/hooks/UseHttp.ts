@@ -1,5 +1,5 @@
 import axios from "axios";
-import { apiUrl } from "./api";
+import { apiUrl } from "../servises/api";
 import { useCallback, useState } from "react";
 import { PopupStatusMessage } from "../components/PopupStatusMessage/PopupStatusMessage";
 
