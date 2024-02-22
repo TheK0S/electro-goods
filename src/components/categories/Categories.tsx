@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useHttp } from "../../servises/requests";
+import { useHttp } from "../../hooks/UseHttp";
 import { Category } from "../../interfaces/admin.data";
 import { PopupStatusMessage, } from "../PopupStatusMessage/PopupStatusMessage";
 import { CategoryItem } from "./categoryItem";
@@ -30,6 +30,8 @@ export const Categories = () => {
     }, []);
   
     const popupStatusMessageProps = {...popup, showPopupMessage}
+console.log('ServResp',categories)
+
     return (
         <>
             <h1>категории</h1>
@@ -39,7 +41,9 @@ export const Categories = () => {
             <div>{categories.length 
             ? 
                 categories.map((category: Category) => (
-                <CategoryItem {...category}/>)) 
+                <CategoryItem 
+                    key={category.id}
+                    {...category} />)) 
             : 
                 <div className='text-center font-bold'> данных пока нет</div>}
             </div>
