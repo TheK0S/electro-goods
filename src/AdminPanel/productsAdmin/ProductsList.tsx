@@ -5,8 +5,6 @@ import axios from 'axios';
 import { CreateProductModal } from './components/CreateProductModal';
 import { apiUrl } from '../../servises/api';
 import { Popup, PopupProps } from '../components/Popup';
-import { Route, Routes } from 'react-router-dom';
-import { EditProduct } from './EditProduct';
 
 export const ProductsList = () => {
   const [products, setProducts] = useState<Product[]>([]);

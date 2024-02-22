@@ -4,12 +4,10 @@ import React, { useEffect, useState } from "react";
 import { AttributesList } from "./components/AttributesList";
 import { CreateAttributeModal } from "./components/CreateAttributeModal";
 import axios from "axios";
-import { apiUrl } from "../../api";
 import { Popup, PopupProps } from "../components/Popup";
 import { Link, useParams } from "react-router-dom";
 import { Select, SelectOption } from "../components/Select";
-import { count } from "console";
-import { Value } from "sass";
+import { apiUrl } from "../../servises/api";
 
 
 export const EditProduct = () => {
