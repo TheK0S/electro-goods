@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react"
-import { useHttp } from "../../hooks/UseHttp";
+// import { useHttp } from "../../store/axiosBaseQuery";
 import { Category } from "../../interfaces/admin.data";
 import { PopupStatusMessage, } from "../PopupStatusMessage/PopupStatusMessage";
 import { CategoryItem } from "./categoryItem";
+import { useGetDataQuery } from '../../servises/postServise'
 
 export const Categories = () => {
 
-    const request = useHttp();
-  
+    // const request = useHttp();
+    // console.log('useGetDataQuery()',useGetDataQuery('/categoriesAdmin'))
+    const { data, error, isLoading } = useGetDataQuery('/categoriesAdmin');
+console.log('data',data, error, isLoading)
     async function getCategories  () {
-        setCategories(await request ('/categoriesAdmin'));
+        // setCategories(await request ('/categoriesAdmin1'));
     }
 
     const [categories, setCategories] = useState<Category[]>([]);
