@@ -1,19 +1,19 @@
 import {createApi} from '@reduxjs/toolkit/query/react';
-import { axiosBaseQuery } from './axiosBaseQuery';
-const API_URL = 'http://eg.';
+import axiosBaseQuery from './axiosBaseQuery';
+import {apiUrl} from '../constants'
 
 export const postAPI = createApi({
     reducerPath: 'postAPI',
     // tagTypes: ['Categories'],//тег тип для обновления посмотреть далее насколько он нужен??
     baseQuery: axiosBaseQuery({
-      baseUrl: '',
+      baseUrl: apiUrl,
         // transformResponse: (response) => response
     }),
-    
     endpoints: (builder) => ({
-        
           getData: builder.query({ 
-            query: (url) => url
+            query: (url) => {
+              console.log('dvbhdv', url )
+              return url}
          }), 
           createData: builder.mutation({
             query: (body) => ({

@@ -11,8 +11,6 @@ export enum Languages {
 export const LanguagePanel = () => {
 
     const mainLanguage = useSelector ((state:RootState) => state.languageReducer.languageValue);
-    console.log(mainLanguage);
-
     const buttonClass = 'languagePanel-item w-1/2 ';
     const buttonClassChoisen = 'languagePanel-item bg-secondary w-1/2 ';
     const setLanguage = useDispatchedActions(languageChange)
