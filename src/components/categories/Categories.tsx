@@ -11,24 +11,22 @@ export const Categories = () => {
         isLoading,
         error 
     } = useGetDataQuery('/categoriesAdmin');
-
     const [popup, setPopup] = useState({
         title: 'Ошибка!',
         text: 'Не удалось загрузить страны',
         isOpen: false,
         className: 'bg-danger_light',
         });
-   
     function showPopupMessage(status:boolean){
         setPopup (popup =>({...popup , isOpen: status}));
-    }
+    };
+    const popupStatusMessageProps = {...popup, showPopupMessage};
     useEffect(() => {
         if (error){showPopupMessage(true)}
       }, []);
+    
+    if (isLoading) return (<h1 className="p-10">...LOADING</h1>)   
 
-    const popupStatusMessageProps = {...popup, showPopupMessage}
-
-    if (isLoading) return (<h1 className="p-10">...LOADING</h1>)    
     if (error) return ( <>
                             <h1 className="p-10">ERROR</h1>
                             <div onClick={()=>{showPopupMessage(false)}}>

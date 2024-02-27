@@ -11,14 +11,12 @@ export const postAPI = createApi({
     }),
     endpoints: (builder) => ({
           getData: builder.query({ 
-            query: (url) => {
-              console.log('dvbhdv', url )
-              return url}
-         }), 
+            query: (url) => ({url})
+          }), 
           createData: builder.mutation({
-            query: (body) => ({
+            query: ({url, body}) => ({
               body,
-              url: '/',
+              url: url,
               method: 'POST'
             })
           })

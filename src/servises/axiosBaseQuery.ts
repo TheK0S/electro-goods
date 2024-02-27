@@ -19,7 +19,7 @@ const axiosBaseQuery =
   async ({ url, method, params, headers }) => {
     try {
       const result = await axios({
-        url: baseUrl+"/categoriesAdmin",
+        url: baseUrl+url,
         method,
         params,
         headers,
