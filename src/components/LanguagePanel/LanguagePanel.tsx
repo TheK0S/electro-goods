@@ -4,8 +4,8 @@ import { languageChange } from '../../store/language.slice';
 import { useDispatchedActions } from '../../hooks/UseActions';
 
 export enum Languages {
-    Ukrainian = 'УКР',
-    Russian = 'РУС',
+    Ukrainian = 'uk',
+    Russian = 'ru',
 }
 
 export const LanguagePanel = () => {
@@ -24,10 +24,10 @@ export const LanguagePanel = () => {
                         lg:w-20 lg:h-10 lg:text-sm">
             
             <button onClick={()=>setLanguage(Languages.Ukrainian)} 
-                className={setbuttonClass(Languages.Ukrainian)}>{Languages.Ukrainian}
+                className={setbuttonClass(Languages.Ukrainian)}>УКР
             </button>
             <button onClick={()=>setLanguage(Languages.Russian)} 
-                className={setbuttonClass(Languages.Russian)}>{Languages.Russian}
+                className={setbuttonClass(Languages.Russian)}>РУС
             </button>
         </div>
     );
