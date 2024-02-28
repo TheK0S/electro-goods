@@ -11,15 +11,20 @@ export const postAPI = createApi({
     }),
     endpoints: (builder) => ({
           getData: builder.query({ 
-            query: (url) => ({url})
-          }), 
-          createData: builder.mutation({
-            query: ({url, body}) => ({
-              body,
-              url: url,
-              method: 'POST'
+            query: (url) => ({
+              url:url,
+              headers: {
+                'Api-Language': 'uk',
+              }
             })
-          })
+          }), 
+          // postData: builder.mutation({
+          //   query: ({url, body}) => ({
+          //     body,
+          //     url: url,
+          //     method: 'POST'
+          //   })
+          // })
       })
 });
 export const { useGetDataQuery, endpoints } = postAPI;

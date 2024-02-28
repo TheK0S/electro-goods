@@ -2,15 +2,19 @@ import { useEffect, useState } from "react"
 import { Category } from "../../interfaces/admin.data";
 import { PopupStatusMessage, } from "../PopupStatusMessage/PopupStatusMessage";
 import { CategoryItem } from "./categoryItem";
-import { useGetDataQuery } from '../../servises/postServise'
+import { useGetDataQuery } from '../../servises/postServise';
+import {useSelector } from 'react-redux';
+import type { RootState } from '../../store/store'
+
 
 export const Categories = () => {
 
+    const mainLanguage = useSelector ((state:RootState) => state.languageReducer.languageValue);
     const { 
         data: categories = [] ,
         isLoading,
         error 
-    } = useGetDataQuery('/categoriesAdmin');
+    } = useGetDataQuery('/products');
     const [popup, setPopup] = useState({
         title: 'Ошибка!',
         text: 'Не удалось загрузить страны',
