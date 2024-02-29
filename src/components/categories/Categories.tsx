@@ -14,7 +14,7 @@ export const Categories = () => {
         data: categories = [] ,
         isLoading,
         error 
-    } = useGetDataQuery('/products');
+    } = useGetDataQuery({url:'/products', lang:mainLanguage});
     const [popup, setPopup] = useState({
         title: 'Ошибка!',
         text: 'Не удалось загрузить страны',
