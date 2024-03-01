@@ -1,7 +1,7 @@
-import './Sidenav.scss';
+
 import { Link } from 'react-router-dom';
 
-export const Sidenav = () => {
+export const FooterNav = () => {
     return (
         <nav className='Sidenav'>
             <ul>
