@@ -3,7 +3,7 @@ import { SearchPanel } from '../SearchPanel/SearchPanel';
 import { ContactsPanel } from '../ContactsPanel/ContactsPanel';
 import { IconsPanel } from '../IconsPanel/IconsPanel';
 import { LanguagePanel } from '../LanguagePanel/LanguagePanel';
-import { CatalogPanel } from '../catalogPanel/catalogPanel';
+import { CatalogPanelButton } from '../catalogPanel/catalogPanelBatton';
 
 export const Header = () => {
     return (
@@ -14,7 +14,7 @@ export const Header = () => {
             <div className='row-start-3 col-start-2 col-end-12
                             xs:row-start-2 xs:col-start-1 xs:col-end-4
                             md:hidden'>
-                <CatalogPanel/>
+                <CatalogPanelButton/>
             </div>
             <div className="row-start-2 col-start-2 col-end-12 col-span-8 
                             xs:col-start-5 xs:col-end-12 
