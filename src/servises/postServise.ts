@@ -27,13 +27,15 @@ export const postAPI = createApi({
           }),
           putData: builder.mutation({
             query: ({url, id}) => ({
-              url: url+'/'+id,
+              id,
+              url: url,
               method: 'PUT'
             })
           }),
           deleteData: builder.mutation({
             query: ({url, id}) => ({
-              url: url+'/'+id,
+              id,
+              url: url,
               method: 'DELETE'
             })
           })
