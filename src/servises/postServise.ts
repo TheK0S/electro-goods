@@ -26,9 +26,8 @@ export const postAPI = createApi({
             })
           }),
           putData: builder.mutation({
-            query: ({url, body}) => ({
-              body,
-              url: url+'/'+ body.id,
+            query: ({url, id}) => ({
+              url: url+'/'+id,
               method: 'PUT'
             })
           }),
