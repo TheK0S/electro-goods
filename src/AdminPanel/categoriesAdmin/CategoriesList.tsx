@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CreateCategoryModal } from './components/CreateCategoryModal';
 import { EditCategoryModal } from './components/EditCategoryModal';
-import { apiUrl } from '../../servises/api';
+import { apiUrl } from '../../constants';
 import { Popup, PopupProps } from '../components/Popup';
 
 export const CategoriesList = () => {
