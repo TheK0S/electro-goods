@@ -1,6 +1,6 @@
 import {Category} from '../../interfaces/admin.data';
 
-export const CategoryItem : React.FC<Category> = ({...category}) => {
+export const CatalogItem : React.FC<Category> = ({...category}) => {
     
     return(
         <div className="py-2 px-4

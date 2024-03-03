@@ -1,4 +1,4 @@
-import { FooterNav } from '../Navigation/FooterNav';
+import { FooterNav } from '../navigation/FooterNav';
 
 export const Footer = () => {
     const w = 500;

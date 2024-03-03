@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CreateCountryModal } from './components/CreateCountryModal';
 import { EditCountryModal } from './components/EditCountryModal';
-import { apiUrl } from '../../servises/api';
+import { apiUrl } from '../../constants';
 import { Popup, PopupProps } from '../components/Popup';
 
 export const CountriesList = () => {

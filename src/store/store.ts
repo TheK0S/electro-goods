@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import languageReducer from "./language.slice";
+import catalogReducer from './catalog.slice';
 import { postAPI } from "../servises/postServise";
 
 export const store = configureStore({
     reducer: {
         [postAPI.reducerPath]: postAPI.reducer,
-        languageReducer,
+        languageReducer, catalogReducer,
     },
     middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(postAPI.middleware),
