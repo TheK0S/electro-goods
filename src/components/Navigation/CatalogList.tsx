@@ -25,12 +25,19 @@ export const Catalog:React.FC<CatalogProps> = ({isCatalogOpen, showCatalog}) => 
     if (error) return (<h1 className="p-10">ERROR</h1>)
 
     return (
-        <nav className={`catalogNav-wrap absolute left-80 top-10 bg-main 
-                        text-modal hover:text-secondary text-base
+        <nav className={`catalogNav-wrap absolute  bg-[white]
+                        text-base w-full h-full top-0 z-30
                         ${isCatalogOpen?'block':'hidden'} 
-                        md:block md:relative md:left-0 md:top-0 md:w-full`}>
-            <button className='bg-secondary md:hidden' onClick={()=>{showCatalog(false)}}>close</button>
-             <div>{(categories) 
+                        md:block md:relative md:left-0 md:top-0 
+                        md:bg-main md:text-modal `}>
+            <button className='w-full rounded-full md:hidden ml-auto mr-0' onClick={()=>{showCatalog(false)}}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="rgba(44, 68, 86, 0.9)" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#ff8d35" className="block w-10 h-10 ml-auto mr-3 mt-3">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+            </button>
+             <div className='caregoriesList flex flex-col
+                             md:flex-row md:justify-between
+                            '>{(categories) 
             ? 
                 categories.map((category: Category) => (
                 <CatalogItem 
