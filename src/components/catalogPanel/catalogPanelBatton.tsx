@@ -1,7 +1,7 @@
 export const CatalogPanelButton = () => {
 
     return (
-        <div className="catalogPanel-wrap flex justify-start items-center pl-5
+        <div className="catalogPanel-wrap flex justify-start items-center pl-5 cursor-pointer
                         bg-main text-modal hover:text-secondary rounded-full text-base
                         xs:leading-5
                         "
