@@ -1,9 +1,10 @@
-import { Logo } from '../Logo/Logo';
-import { SearchPanel } from '../SearchPanel/SearchPanel';
-import { ContactsPanel } from '../ContactsPanel/ContactsPanel';
-import { IconsPanel } from '../IconsPanel/IconsPanel';
-import { LanguagePanel } from '../LanguagePanel/LanguagePanel';
+import { Logo } from '../logo/Logo';
+import { SearchPanel } from '../searchPanel/SearchPanel';
+import { ContactsPanel } from '../contactsPanel/ContactsPanel';
+import { IconsPanel } from '../iconsPanel/IconsPanel';
+import { LanguagePanel } from '../languagePanel/LanguagePanel';
 import { CatalogPanelButton } from '../catalogPanel/catalogPanelBatton';
+import {Catalog} from '../navigation/CatalogList'
 
 export const Header = () => {
     return (
@@ -32,6 +33,10 @@ export const Header = () => {
                             xs:col-start-10 xs:col-span-1">
                 <LanguagePanel/>
             </div>
+            <div className="row-start-3">
+                <Catalog />
+            </div>
+
         </header>
     );
 }

@@ -6,11 +6,10 @@ import{
   Outlet
 } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
-import { Footer } from './components/Footer/Footer';
+import { Footer } from './components/footer/Footer';
 import { NotFound } from './pages/NotFound/NotFound';
-import { Header } from './components/Header/Header';
+import { Header } from './components/header/Header';
 import { PersonalArea } from './pages/PersonalArea/PersonalArea';
-import './App.scss';
 import { AdminPage } from './AdminPanel/AdminPage';
 
 const App = () => {

@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { Category } from "../../interfaces/admin.data";
-import { PopupStatusMessage, } from "../PopupStatusMessage/PopupStatusMessage";
+import { PopupStatusMessage, } from "../popupStatusMessage/PopupStatusMessage";
 import { CategoryItem } from "./categoryItem";
 import { useGetDataQuery } from '../../servises/postServise';
 import {useSelector } from 'react-redux';
-import type { RootState } from '../../store/store'
+import type { RootState } from '../../store/store';
 
 
 export const Categories = () => {
@@ -14,7 +14,7 @@ export const Categories = () => {
         data: categories = [] ,
         isLoading,
         error 
-    } = useGetDataQuery({url:'/products', lang:mainLanguage});
+    } = useGetDataQuery({url:'/categoriesAdmin', lang:mainLanguage});
     const [popup, setPopup] = useState({
         title: 'Ошибка!',
         text: 'Не удалось загрузить страны',
