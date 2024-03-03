@@ -1,26 +1,10 @@
-// import { useState } from "react";
-// import { Catalog } from "../navigation/CatalogList";
-// import {useSelector } from 'react-redux';
-// import type { RootState } from '../../store/store'
-import { catalogOpen } from '../../store/catalog.slice';
-import { useDispatchedActions } from '../../hooks/UseActions';
-
 export const CatalogPanelButton = () => {
 
-    // const [isCatalogOpen, setIsCatalogOpen] = useState(false);
-    // const isCatalogOpen = useSelector ((state:RootState) => state.catalogReducer.isCatalogOpen);
-    const showCatalog = useDispatchedActions(catalogOpen)
-
-    // function showCatalog(value:boolean) {
-    //     setIsCatalogOpen(value);
-    // }
- 
     return (
         <div className="catalogPanel-wrap flex justify-start items-center pl-5
                         bg-main text-modal hover:text-secondary rounded-full text-base
                         xs:leading-5
                         "
-            onClick={()=>{showCatalog(true)}}
         >
             <div className="catalogPanel-icon pr-3 xs:pr-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 xs:w-9 xs:h-9">
