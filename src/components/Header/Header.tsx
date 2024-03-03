@@ -4,17 +4,29 @@ import { ContactsPanel } from '../contactsPanel/ContactsPanel';
 import { IconsPanel } from '../iconsPanel/IconsPanel';
 import { LanguagePanel } from '../languagePanel/LanguagePanel';
 import { CatalogPanelButton } from '../catalogPanel/catalogPanelBatton';
-import {Catalog} from '../navigation/CatalogList'
+import { Catalog} from '../navigation/CatalogList'
+import { useState, } from 'react';
+
 
 export const Header = () => {
+
+    const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+    // const isCatalogOpen = useSelector ((state:RootState) => state.catalogReducer.isCatalogOpen);
+
+    function showCatalog(value:boolean) {
+        setIsCatalogOpen(value);
+    }
+
     return (
         <header className="grid grid-rows-2 grid-cols-12 gap-y-4 
                            xs:grid-cols-10 
                            lg:flex lg:flex-row lg:justify-between lg:items-center">
             <div className="col-span-2"><Logo /></div>
-            <div className='row-start-3 col-start-2 col-end-12
+            <div className={`row-start-3 col-start-2 col-end-12
                             xs:row-start-2 xs:col-start-1 xs:col-end-4
-                            md:hidden'>
+                            md:hidden ${console.log('gfgfddfg')}`}
+                onClick={()=>{showCatalog(true)}}
+            >
                 <CatalogPanelButton/>
             </div>
             <div className="row-start-2 col-start-2 col-end-12 col-span-8 
@@ -33,8 +45,8 @@ export const Header = () => {
                             xs:col-start-10 xs:col-span-1">
                 <LanguagePanel/>
             </div>
-            <div className="row-start-3">
-                <Catalog />
+            <div className="row-start-3 md:col-start-1 md:col-end-12 " >
+                <Catalog isCatalogOpen={isCatalogOpen} showCatalog={showCatalog} />
             </div>
 
         </header>
