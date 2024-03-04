@@ -1,12 +1,11 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import { Languages } from '../components/LanguagePanel/LanguagePanel';
 
 export interface languageState {
      languageValue: string;
    }
    
 const initialState:languageState = {
-     languageValue: 'УКР'
+     languageValue: 'uk'
 }
 
 export const languageSlice = createSlice({

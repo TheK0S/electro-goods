@@ -3,7 +3,7 @@ import { Product } from '../../interfaces/admin.data';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CreateProductModal } from './components/CreateProductModal';
-import { apiUrl } from '../../servises/api';
+import { apiUrl } from '../../constants';
 import { Popup, PopupProps } from '../components/Popup';
 
 export const ProductsList = () => {
