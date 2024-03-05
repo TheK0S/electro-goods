@@ -22,14 +22,14 @@ export const Header = () => {
             <div className="col-span-2"><Logo /></div>
             <div className={`row-start-3 col-start-2 col-end-12
                             xs:row-start-2 xs:col-start-1 xs:col-end-4
-                            md:hidden`}
-                onClick={()=>{showCatalog(true)}}
+                            lg:hidden`}
+                onClick={()=>{showCatalog(!isCatalogOpen)}}
             >
                 <CatalogPanelButton/>
             </div>
             <div className="row-start-2 col-start-2 col-end-12 col-span-8 
                             xs:col-start-5 xs:col-end-12 
-                            md:col-start-1 md:col-span-12">
+                            lg:col-start-1 lg:col-span-12">
                 <SearchPanel/>
             </div>
             <div className="row-start-1 col-start-5 col-span-4 xs:col-start-4">
