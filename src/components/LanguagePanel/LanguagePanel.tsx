@@ -1,13 +1,33 @@
+import {useSelector } from 'react-redux';
+import type { RootState } from '../../store/store'
+import { languageChange } from '../../store/language.slice';
+import { useDispatchedActions } from '../../hooks/UseActions';
+
+export enum Languages {
+    Ukrainian = 'uk',
+    Russian = 'ru',
+}
+
 export const LanguagePanel = () => {
 
-    let language = 'ru';
-    const className = 'languagePanel-item';
-    const classNameChoisen = 'languagePanel-item  bg-secondary';
+    const mainLanguage = useSelector ((state:RootState) => state.languageReducer.languageValue);
+    const buttonClass = 'languagePanel-item w-1/2 ';
+    const buttonClassChoisen = 'languagePanel-item bg-secondary w-1/2 ';
+    const setLanguage = useDispatchedActions(languageChange);
+    const setbuttonClass=(lang:string)=>{
+        return lang===mainLanguage?buttonClassChoisen:buttonClass
+    };
 
     return (
-        <div className="languagePanel flex min-w-16 justify-between">
-            <div className={language==='ru'?classNameChoisen:className}>РУС</div>
-            <div className={language==='uk'?classNameChoisen:className}>УКР</div>
+        <div className="languagePanel flex justify-between text-[10px] w-12 h-6 
+                        sm:w-18 sm:h-9 sm:text-xs
+                        lg:w-20 lg:h-10 lg:text-sm">
+            <button onClick={()=>setLanguage(Languages.Ukrainian)} 
+                className={setbuttonClass(Languages.Ukrainian)}>УКР
+            </button>
+            <button onClick={()=>setLanguage(Languages.Russian)} 
+                className={setbuttonClass(Languages.Russian)}>РУС
+            </button>
         </div>
     );
-  };
+};

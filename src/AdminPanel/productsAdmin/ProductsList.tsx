@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { CreateProductModal } from './components/CreateProductModal';
 import { EditProductModal } from './components/EditProductModal';
-import { apiUrl } from '../../api';
+import { apiUrl } from '../../constants';
 import { Popup, PopupProps } from '../components/Popup';
 
 export const ProductsList = () => {

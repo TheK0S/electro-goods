@@ -10,14 +10,13 @@ import { Footer } from './components/footer/Footer';
 import { NotFound } from './pages/NotFound/NotFound';
 import { Header } from './components/header/Header';
 import { PersonalArea } from './pages/PersonalArea/PersonalArea';
-import './App.scss';
 import { AdminPage } from './AdminPanel/AdminPage';
 
 const App = () => {
 
   const Root = () => {
     return (
-      <div className="container py-3 ">
+      <div className="container relative h-[100vh] py-3 ">
         <div>
           <Header />
           <Outlet />

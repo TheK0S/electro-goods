@@ -1,1 +1,0 @@
-export const apiUrl: string = "http://eg.somee.com/api";
