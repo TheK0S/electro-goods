@@ -1,20 +1,23 @@
+import { email } from "../../constants";
 export const Logo = () => {
     return (
-        <div className='logo w-17 border-dotted border-secondary border-1 
-                        rounded-3xl justify-around h-7 pl-1 flex
-                        xs:h-7  
-                        
-                        sm:w-40 
-                        lg:pl-4 lg:w-64 lg:min-w-64 lg:h-12'>
-            <div className='md:w-1/2'>
-                <img className='logo-img w-full h-full' src="logo.jpg" alt="logo" />
-            </div>
-            <div className='logo-text w-1/3 text-[10px] leading-[10px]
-                            hidden font-bold text-main self-center
-                            sm:block 
+        <div className='logo w-6 h-6 ml-7 
+                        inline-block
+                        xs:w-40 xs:ml-0 
+                        sm:w-40 sm:h-9
+                        lg:pl-0 lg:w-64 lg:min-w-64 lg:h-10'>
+            <a href="#" className='inline-block h-6 w-6
+                                    sm:h-9 sm:w-9
+                                    lg:h-10 lg:w-10 '>
+                <img className='logo-img' src="ELGOODS-64.png" alt="logo" />
+            </a>
+            <a href={`mailto:${email}`} className=' hidden logo-text inline-block ml-2 text-[10px]
+                            font-bold text-main self-center
+                            xs:text-[11px] xs:align-top xs:pt-[8px]
+                            sm:inline-block
                             lg:text-base'>
-            завжди контакт
-            </div>
+            {email}
+            </a>
         </div>
     );
 }
