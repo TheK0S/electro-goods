@@ -11,17 +11,36 @@ import { NotFound } from './pages/NotFound/NotFound';
 import { Header } from './components/header/Header';
 import { PersonalArea } from './pages/PersonalArea/PersonalArea';
 import { AdminPage } from './AdminPanel/AdminPage';
+// import { ShowComponentContext } from './servises/showComponentContext';
+import { ShowFilterContext,ShowBreadCrumbContext } from './servises/showComponentContext';
+import { useState } from 'react';
 
 const App = () => {
+
+  const [isShowFilter, setIsShowFilter] = useState(false);
+  const [isShowInvitedContent, setIsShowInvitedContent] = useState(false);
+  const [isShowBreadCrumb, setIsShowBreadCrumb] = useState(false);
+
+  const showFilter = (isValue:boolean):void =>{
+    setIsShowFilter(isValue);
+  };
+
+  const showBreadCrumb = (isValue:boolean):void =>{
+    setIsShowBreadCrumb(isValue);
+  }
 
   const Root = () => {
     return (
       <div className="container relative h-[100vh] py-3 ">
-        <div>
+        <ShowFilterContext.Provider value={{isShowFilter, showFilter}}>
+        <ShowBreadCrumbContext.Provider value={{isShowBreadCrumb, showBreadCrumb}}>
+          <div>
           <Header />
           <Outlet />
           <Footer />
-        </div>
+          </div>
+        </ShowBreadCrumbContext.Provider>
+        </ShowFilterContext.Provider>
       </div>
       );
   };

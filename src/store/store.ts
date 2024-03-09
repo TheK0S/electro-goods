@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import languageReducer from "./language.slice";
-import catalogReducer from './catalog.slice';
+// import catalogReducer from './catalog.slice';
 import { postAPI } from "../servises/postServise";
 
 export const store = configureStore({
