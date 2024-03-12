@@ -11,8 +11,7 @@ import { NotFound } from './pages/NotFound/NotFound';
 import { Header } from './components/header/Header';
 import { PersonalArea } from './pages/PersonalArea/PersonalArea';
 import { AdminPage } from './AdminPanel/AdminPage';
-// import { ShowComponentContext } from './servises/showComponentContext';
-import { ShowFilterContext,ShowBreadCrumbContext } from './servises/showComponentContext';
+import { ShowFilterContext,ShowBreadCrumbContext, ShowInvitedContentContext } from './servises/showComponentContext';
 import { useState } from 'react';
 
 const App = () => {
@@ -27,18 +26,24 @@ const App = () => {
 
   const showBreadCrumb = (isValue:boolean):void =>{
     setIsShowBreadCrumb(isValue);
-  }
+  };
+
+  const showInvitedContent = (isValue:boolean):void =>{
+    setIsShowInvitedContent(isValue);
+  };
 
   const Root = () => {
     return (
       <div className="container relative h-[100vh] py-3 ">
         <ShowFilterContext.Provider value={{isShowFilter, showFilter}}>
         <ShowBreadCrumbContext.Provider value={{isShowBreadCrumb, showBreadCrumb}}>
+        <ShowInvitedContentContext.Provider value={{isShowInvitedContent, showInvitedContent}}>
           <div>
           <Header />
           <Outlet />
           <Footer />
           </div>
+        </ShowInvitedContentContext.Provider>
         </ShowBreadCrumbContext.Provider>
         </ShowFilterContext.Provider>
       </div>

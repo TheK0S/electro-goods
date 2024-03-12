@@ -18,7 +18,7 @@ export const Catalog:React.FC<CatalogProps> = ({isCatalogOpen, showCatalog}) => 
         data: categories = [] ,
         isLoading,
         error 
-    } = useGetDataQuery({url:'/categoriesAdmin', lang:mainLanguage});
+    } = useGetDataQuery({url:'/categories', lang:mainLanguage});
     
     if (isLoading) return (<div className="p-10 text-xs">...LOADING</div>)   
 

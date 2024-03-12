@@ -4,7 +4,8 @@ export const BreadCrumb = () => {
 
   const { isShowBreadCrumb, showBreadCrumb } = useShowBreadCrumbContext();
 
-  if (isShowBreadCrumb) return(
+  // if (isShowBreadCrumb) 
+  return(
 
     <nav>
       <ol className="breadcrumb flex bg-main_02">
@@ -20,5 +21,5 @@ export const BreadCrumb = () => {
       </ol>
     </nav>
   ) 
-  else return null
+  // else return null
 };

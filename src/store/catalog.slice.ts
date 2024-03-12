@@ -9,7 +9,7 @@ const initialState: isCatalogOpenState = {
 };
 
 // export const catalogSlice = createSlice({
-//   name: "language",
+//   name: "",
 //   initialState,
 //   reducers: {
 //     catalogOpen: (state, action: PayloadAction<boolean>) => {
