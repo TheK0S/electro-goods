@@ -6,6 +6,7 @@ import { LanguagePanel } from '../languagePanel/LanguagePanel';
 import { CatalogPanelButton } from '../catalogPanel/catalogPanelBatton';
 import { Catalog} from '../navigation/CatalogList'
 import { useState, } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
 
@@ -43,10 +44,11 @@ export const Header = () => {
                             xs:col-start-10 xs:col-span-1">
                 <LanguagePanel/>
             </div>
-            <div className="row-start-3 w-full
+            <NavLink to={`/categoriesName`}
+            className="row-start-3 w-full
                             md:col-start-1 md:col-end-12" >
                 <Catalog isCatalogOpen={isCatalogOpen} showCatalog={showCatalog} />
-            </div>
+            </NavLink>
         </header>
     );
 }

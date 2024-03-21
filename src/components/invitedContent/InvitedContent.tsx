@@ -2,10 +2,10 @@ import { useGetDataQuery } from '../../servises/postServise';
 import {useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import { useShowInvitedContentContext } from "../../servises/showComponentContext";
+import { Product } from "../../interfaces/admin.data";
+import { ContentItem } from './contentItem';
 
 export const InvitedContent = () => {
-
-    // const { isShowInvitedContent, showInvitedContent } = useShowInvitedContentContext();
 
     const mainLanguage = useSelector ((state:RootState) => state.languageReducer.languageValue);
    
@@ -18,20 +18,20 @@ export const InvitedContent = () => {
     if (isLoading) return (<div className="p-10 text-xs">...LOADING</div>)   
 
     if (error) return (<h1 className="p-10">ERROR</h1>)
-console.log(products.name)
+console.log(products)
     return (
-        <h1 className="bg-[pink]">{products[0].name}</h1>
+        <>
+       <h1>назва категории</h1>
+       {(products) 
+            ? 
+                products.map((product: Product) => (
+                <ContentItem 
+                    key={product.id}
+                    {...product} /> 
+                    )) 
+            :
+                <div className='text-center font-bold'> данных пока нет</div>}   
+        </>
+        
     )
 }
-
-// const { 
-//     data: productsById = [] ,
-//     isLoading,
-//     error 
-// } = useGetDataQuery({url:`/productsAdmin?CategoryId=${category.id}`, lang:mainLanguage});
-// console.log(productsById)
-// const loadProductById = (id:number) => {
-//     console.log(id,category.id, productsById);
-    
-
-// }

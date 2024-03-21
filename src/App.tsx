@@ -5,14 +5,15 @@ import{
   Route,
   Outlet
 } from 'react-router-dom';
-import { Home } from './pages/Home/Home';
+import { Home } from './pages/home/Home';
 import { Footer } from './components/footer/Footer';
-import { NotFound } from './pages/NotFound/NotFound';
+import { NotFound } from './pages/notFound/NotFound';
 import { Header } from './components/header/Header';
-import { PersonalArea } from './pages/PersonalArea/PersonalArea';
+import { PersonalArea } from './pages/personalArea/PersonalArea';
 import { AdminPage } from './AdminPanel/AdminPage';
 import { ShowFilterContext,ShowBreadCrumbContext, ShowInvitedContentContext } from './servises/showComponentContext';
 import { useState } from 'react';
+import { ProductPage } from './pages/productPage/productPage';
 
 const App = () => {
 
@@ -57,6 +58,9 @@ const App = () => {
         <Route path='/admin/*' element={<AdminPage/>} />
         <Route path='/personalarea/:userId' loader={loader} element={<PersonalArea />} errorElement={<NotFound/>} />
         <Route path='*' element={<NotFound />} />
+        <Route path='/product' element={<ProductPage/>} />
+        <Route path='/categoriesName' element={<Home/>} />
+
       </Route>
     )
   );
