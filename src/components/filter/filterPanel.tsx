@@ -1,6 +1,7 @@
 import { useShowFilterContext } from "../../servises/showComponentContext";
 import { useFormik } from "formik";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 interface FormValues {
   minPrice: string;
@@ -57,6 +58,8 @@ export const FilterPanel = () => {
   const { showFilter } = useShowFilterContext();
   const [isOpenBrend, setIsOpenBrend] = useState(false);
   const [isOpencountryOfOrigin, setIsOpencountryOfOrigin] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
 
   //add brends and countries from server for list of choice in the filtre
   const toggleDropdown = (
@@ -74,7 +77,8 @@ export const FilterPanel = () => {
     },
 
     onSubmit: (values) => {
-      console.log(values);
+      console.log('max',formik);
+      setSearchParams({maxPrice:values.maxPrice,minPrice:values.minPrice, countries:values.countryOfOrigin, manufacturers:values.manufacturers})
     },
   });
 
@@ -111,7 +115,7 @@ export const FilterPanel = () => {
         close
       </button>
       <form
-        className="filter bg-secondary pt-5 pl-5 text-[36px] h-80 w-40 text-sm"
+        className="filter bg-secondary pt-5 pl-5 text-[36px] h-120 w-40 text-sm"
         onSubmit={formik.handleSubmit}
       >
         <label
@@ -122,7 +126,7 @@ export const FilterPanel = () => {
         </label>
         <div>{isOpenBrend && filterItem(brends, "manufacturers")}</div>
 
-        <div className="flex">
+        <div className="flex my-8">
           <label htmlFor="minPrice">від</label>
           <input
             className="ml-2 w-10"
